@@ -3,7 +3,7 @@ node('master'){
 		try {
 			git 'https://github.com/geoffcawley/Appointo.git'
 		} catch(e) {
-			slackSend message:'Appointo failed import' color:'danger'
+			slackSend(message:'Appointo failed import' color:'danger')
 			throw e
 		}
     }   
@@ -14,7 +14,7 @@ node('master'){
 			bat 'nuget restore'
 			bat 'msbuild Appointo.Entity.csproj'
 		} catch(e) {
-			slackSend message:'Appointo build failure' color:'danger'
+			slackSend(message:'Appointo build failure' color:'danger')
 			throw e
 		}
     }
