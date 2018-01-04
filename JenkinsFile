@@ -1,0 +1,27 @@
+node('master'){
+    stage('import'){
+        git 'https://github.com/geoffcawley/Appointo.git'
+    }   
+    
+    stage('analyze'){
+        sh 'mono ~/Tools/ScannerMSBuild/SonarQube.Scanner.MSBuild.exe begin /n:jenkinsops /k:jkmvc /v:0.1.0'
+
+        sh 'dotnet restore'
+
+        sh 'dotnet build'
+
+        sh 'mono ~/Tools/ScannerMSBuild/SonarQube.Scanner.MSBuild.exe end'
+    }
+    
+    stage('build'){
+        
+    }
+    
+    stage('package'){
+        
+    }
+    
+    stage('deploy'){
+        
+    }
+}
