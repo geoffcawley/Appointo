@@ -11,7 +11,7 @@ node('master'){
     stage('build') {
 		try {
 			dir('C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo.Entity\\Appointo.Entity')	{
-				bat 'nuget restore'
+				bat 'dotnet restore'
 				bat 'msbuild /t:clean,build Appointo.Entity.csproj'
 			}
 		} catch(e) {
@@ -25,6 +25,7 @@ node('master'){
 			dir('Appointo.Entity') {
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
 				bat 'dotnet build'
+				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			}
 		} catch(e) {
 			slackSend(message:'Appointo analysis failure')
