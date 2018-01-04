@@ -10,7 +10,7 @@ node('master'){
     
     stage('build') {
 		try {
-			dir('C:\Program Files (x86)\Jenkins\workspace\appointo-pipe\Appointo.Entity')	//location of solution file
+			dir('C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo.Entity')	//location of solution file
 			bat 'nuget restore'
 			bat 'msbuild /t:clean,Appointo.Entity'
 		} catch(e) {
