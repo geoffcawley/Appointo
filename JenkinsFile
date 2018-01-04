@@ -1,27 +1,38 @@
 node('master'){
     stage('import'){
-        git 'https://github.com/geoffcawley/Appointo.git'
+		try {
+			git 'https://github.com/geoffcawley/Appointo.git'
+		} catch(e) {
+			//slackSend message:'Appointo failed import' color:'danger'
+			throw e
+		}
     }   
     
-    stage('analyze'){
-        sh 'mono ~/Tools/ScannerMSBuild/SonarQube.Scanner.MSBuild.exe begin /n:jenkinsops /k:jkmvc /v:0.1.0'
+    stage('build') {
+		try {
+		} catch(e) {
+			throw e
+		}
+    }
 
-        sh 'dotnet restore'
+    stage('analyze') {
+		try {
+		} catch(e) {
+			throw e
+		}
+    }
 
-        sh 'dotnet build'
-
-        sh 'mono ~/Tools/ScannerMSBuild/SonarQube.Scanner.MSBuild.exe end'
+    stage('package') {
+		try {
+		} catch(e) {
+			throw e
+		}
     }
     
-    stage('build'){
-        
-    }
-    
-    stage('package'){
-        
-    }
-    
-    stage('deploy'){
-        
+    stage('deploy') {
+		try {
+		} catch(e) {
+			throw e
+		}
     }
 }
