@@ -3,14 +3,18 @@ node('master'){
 		try {
 			git 'https://github.com/geoffcawley/Appointo.git'
 		} catch(e) {
-			//slackSend message:'Appointo failed import' color:'danger'
+			slackSend message:'Appointo failed import' color:'danger'
 			throw e
 		}
     }   
     
     stage('build') {
 		try {
+			dir('C:\Program Files (x86)\Jenkins\workspace\appointo-pipe\Appointo.Entity')	//location of solution file
+			bat 'nuget restore'
+			bat 'msbuild Appointo.Entity.csproj'
 		} catch(e) {
+			slackSend message:'Appointo build failure' color:'danger'
 			throw e
 		}
     }
