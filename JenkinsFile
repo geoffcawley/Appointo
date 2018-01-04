@@ -11,14 +11,14 @@ node('master'){
     stage('build') {
 		try {
 //			dir('C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo.Entity\\Appointo.Entity')	{
-//			dir('Appointo.Entity\\Appointo.Entity')	{
-			dir('Appointo.Entity')	{
+			dir('Appointo.Entity\\Appointo.Entity')	{
+//			dir('Appointo.Entity')	{
 				bat 'msbuild restore'
 //				bat 'msbuild /t:clean,build Appointo.Entity.csproj'
 				bat 'msbuild /t:clean,build Appointo.Entity'
 			}
 		} catch(e) {
-			slackSend(message:'Appointo build failure')
+//			slackSend(message:'Appointo build failure')
 			throw e
 		}
     }
