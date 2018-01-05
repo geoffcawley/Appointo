@@ -13,7 +13,7 @@ node('master'){
 //			dir('Appointo') {
 //				bat 'msbuild restore'
 //			}
-			dir('Appointo\\Appointo.Entity') {
+/*			dir('Appointo\\Appointo.Entity') {
 //				bat 'msbuild restore'
 				bat 'nuget restore Appointo.Entity.csproj'
 				bat 'msbuild /t:clean,build Appointo.Entity.csproj'
@@ -30,7 +30,7 @@ node('master'){
 				bat 'nuget restore Appointo.Client.csproj'
 				bat 'msbuild /t:clean,build Appointo.Client.csproj'
 			}
-
+*/
 			dir('Appointo\\Appointo.Tests')	{
 //				bat 'msbuild restore'
 				bat 'nuget restore Appointo.Tests.csproj'
