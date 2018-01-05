@@ -78,7 +78,8 @@ node('master'){
     
     stage('deploy') {
 		try {
-			'"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipeline\\Appointo\\Appointo.Client\\obj\\Debug\\netcoreapp2.0\\PubTmp\\Out" -dest:iisApp="Default Web Site/appointo" -p:computer=,username=Administrator,password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r"  -enableRule:AppOffline'
+			bat 'dotnet build /p:DeployOnBuild=true /p:PublishProfile=publish'
+			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo\\Package" -dest:iisApp="Default Web Site/appointo" -p:computer=ec2-18-216-243-172.us-east-2.compute.amazonaws.com,username=Administrator,password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r"  -enableRule:AppOffline'
 		} catch(e) {
 			slackSend(message:'Appointo deploy failure')
 			throw e
