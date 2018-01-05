@@ -39,16 +39,16 @@ node('master'){
 			}
 */
 		} catch(e) {
-//			slackSend(message:'Appointo build failure')
+			slackSend(message:'Appointo build failure')
 			throw e
 		}
     }
 
     stage('analyze') {
 		try {
-			dir('Appointo.Entity') {
+			dir('Appointo') {
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
-				bat 'msbuild /t:build Appointo\\Appointo.Client.csproj'
+				bat 'msbuild /t:build Appointo.Client\\Appointo.Client.csproj'
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			}
 		} catch(e) {
