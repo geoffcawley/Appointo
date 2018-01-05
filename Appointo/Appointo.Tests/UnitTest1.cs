@@ -9,6 +9,7 @@ namespace Appointo.Tests
 		[TestMethod]
 		public void TestMethod1()
 		{
+			Assert.IsTrue(1 == 1);
 		}
 	}
 }

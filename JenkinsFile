@@ -59,6 +59,12 @@ node('master'){
 
 	stage('test') {
 		try {
+			dir('Appointo\\Appointo.Tests')
+			{
+				bat 'dotnet restore'
+				bat 'msbuild /t:build Appointo.Tests.csproj'
+				bat 'dotnet test'
+			}
 		} catch(e) {
 			slackSend(message:'Appointo test failure')
 			throw e
