@@ -57,9 +57,21 @@ node('master'){
 		}
     }
 
-    stage('package') {
+	stage('test') {
 		try {
 		} catch(e) {
+			slackSend(message:'Appointo test failure')
+			throw e
+		}
+	}
+
+    stage('package') {
+		try {
+			dir('Appointo') {
+				bat 'dotnet publish Appointo.Client\\Appointo.Client.csproj --output ../Package'
+			}
+		} catch(e) {
+			slackSend(message:'Appointo package failure')
 			throw e
 		}
     }
