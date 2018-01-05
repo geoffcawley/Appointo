@@ -25,18 +25,19 @@ node('master'){
 //				bat 'nuget restore Appointo.Library.csproj'
 				bat 'msbuild /t:clean,build Appointo.Library.csproj'
 			}
-
+*/
 			dir('Appointo\\Appointo.Client') {
 //				bat 'msbuild restore'
 //				bat 'nuget restore Appointo.Client.csproj'
 				bat 'msbuild /t:clean,build Appointo.Client.csproj'
 			}
-*/
+/*
 			dir('Appointo\\Appointo.Tests')	{
 //				bat 'msbuild restore'
 //				bat 'nuget restore Appointo.Tests.csproj'
 				bat 'msbuild /t:clean,build Appointo.Tests.csproj'
 			}
+*/
 		} catch(e) {
 //			slackSend(message:'Appointo build failure')
 			throw e
@@ -47,7 +48,7 @@ node('master'){
 		try {
 			dir('Appointo.Entity') {
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
-				bat 'msbuild /t:build Appointo.Entity.csproj'
+				bat 'msbuild /t:build Appointo\\Appointo.Client.csproj'
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			}
 		} catch(e) {
