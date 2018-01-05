@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c16b15796bd34dffb1210310e84dfc3f" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="DataEntityModel.Patient" Width="1.5" PointX="0.625" PointY="0.875" />
+        <EntityTypeShape EntityType="DataEntityModel.Doctor" Width="1.5" PointX="5.5" PointY="1.125" />
+        <EntityTypeShape EntityType="DataEntityModel.Receptionist" Width="1.5" PointX="9.375" PointY="1" />
+        <EntityTypeShape EntityType="DataEntityModel.PatientAppointment" Width="1.5" PointX="0.625" PointY="4.25" />
+        <EntityTypeShape EntityType="DataEntityModel.Appointment" Width="1.5" PointX="3.25" PointY="1" />
+        <EntityTypeShape EntityType="DataEntityModel.Location" Width="1.5" PointX="3.125" PointY="4.25" />
+        <EntityTypeShape EntityType="DataEntityModel.DoctorAppointment" Width="1.5" PointX="5.625" PointY="4.75" />
+        <EntityTypeShape EntityType="DataEntityModel.Login" Width="1.5" PointX="8.5" PointY="3.5" />
+        <AssociationConnector Association="DataEntityModel.LoginPatient" />
+        <AssociationConnector Association="DataEntityModel.LoginDoctor" />
+        <AssociationConnector Association="DataEntityModel.LoginReceptionist" />
+        <AssociationConnector Association="DataEntityModel.DoctorAppointmentDoctor" />
+        <AssociationConnector Association="DataEntityModel.LocationDoctor" />
+        <AssociationConnector Association="DataEntityModel.AppointmentDoctor" />
+        <AssociationConnector Association="DataEntityModel.AppointmentPatient" />
+        <AssociationConnector Association="DataEntityModel.AppointmentReceptionist" />
+        <AssociationConnector Association="DataEntityModel.PatientAppointmentPatient" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
