@@ -10,22 +10,26 @@ node('master'){
     
     stage('build') {
 		try {
-			dir('Appointo') {
+//			dir('Appointo') {
+//				bat 'msbuild restore'
+//			}
+			dir('Appointo\\Appointo.Entity') {
 				bat 'msbuild restore'
-			}
-			dir('Appointo\\Appointo.Entity')	{
 				bat 'msbuild /t:clean,build Appointo.Entity.csproj'
 			}
 
-			dir('Appointo\\Appointo.Library')	{
+			dir('Appointo\\Appointo.Library') {
+				bat 'msbuild restore'
 				bat 'msbuild /t:clean,build Appointo.Library.csproj'
 			}
 
-			dir('Appointo\\Appointo.Client')	{
+			dir('Appointo\\Appointo.Client') {
+				bat 'msbuild restore'
 				bat 'msbuild /t:clean,build Appointo.Client.csproj'
 			}
 
 			dir('Appointo\\Appointo.Tests')	{
+				bat 'msbuild restore'
 				bat 'msbuild /t:clean,build Appointo.Tests.csproj'
 			}
 		} catch(e) {
