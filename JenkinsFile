@@ -78,7 +78,9 @@ node('master'){
     
     stage('deploy') {
 		try {
+			'"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipeline\\Appointo\\Appointo.Client\\obj\\Debug\\netcoreapp2.0\\PubTmp\\Out" -dest:iisApp="Default Web Site/appointo" -p:computer=,username=Administrator,password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r"  -enableRule:AppOffline'
 		} catch(e) {
+			slackSend(message:'Appointo deploy failure')
 			throw e
 		}
     }
