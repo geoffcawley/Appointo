@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointo.Client", "Appointo.Client\Appointo.Client.csproj", "{E8A0557A-EE99-4F1A-8080-24A1AA862960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointo.Client", "Appointo.Client\Appointo.Client.csproj", "{E8A0557A-EE99-4F1A-8080-24A1AA862960}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointo.Entity", "Appointo.Entity\Appointo.Entity.csproj", "{72CCF0BC-9630-420A-85D9-CD5A54DA8F71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointo.Library", "Appointo.Library\Appointo.Library.csproj", "{857BBFDA-52DB-4A45-A561-097D2BDF7643}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointo.Library", "Appointo.Library\Appointo.Library.csproj", "{857BBFDA-52DB-4A45-A561-097D2BDF7643}"
+	ProjectSection(ProjectDependencies) = postProject
+		{72CCF0BC-9630-420A-85D9-CD5A54DA8F71} = {72CCF0BC-9630-420A-85D9-CD5A54DA8F71}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointo.Tests", "Appointo.Tests\Appointo.Tests.csproj", "{ECB3C332-A933-45C4-B457-2E5960EAC016}"
+	ProjectSection(ProjectDependencies) = postProject
+		{857BBFDA-52DB-4A45-A561-097D2BDF7643} = {857BBFDA-52DB-4A45-A561-097D2BDF7643}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
