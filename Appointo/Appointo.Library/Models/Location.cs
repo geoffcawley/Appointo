@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-//using Appinto.Entity;
+using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
