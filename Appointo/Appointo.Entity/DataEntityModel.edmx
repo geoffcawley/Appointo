@@ -4,277 +4,277 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DataEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AppointmentReceptionist">
-          <Key>
-            <PropertyRef Name="Appointments_Id" />
-            <PropertyRef Name="Receptionists_Id" />
-          </Key>
-          <Property Name="Appointments_Id" Type="int" Nullable="false" />
-          <Property Name="Receptionists_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Appointments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Duration" Type="int" Nullable="false" />
-          <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DoctorId" Type="int" />
-          <Property Name="PatientId" Type="int" />
-        </EntityType>
-        <EntityType Name="DoctorAppointments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DoctorId" Type="int" />
-        </EntityType>
-        <EntityType Name="Doctors">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoginId" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Specialty" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LocationDoctor">
-          <Key>
-            <PropertyRef Name="Locations_Id" />
-            <PropertyRef Name="Doctors_Id" />
-          </Key>
-          <Property Name="Locations_Id" Type="int" Nullable="false" />
-          <Property Name="Doctors_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Locations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Logins">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PatientAppointments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PatientId" Type="int" />
-        </EntityType>
-        <EntityType Name="Patients">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LoginId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Receptionists">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoginId" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_AppointmentDoctor">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appointments">
-              <PropertyRef Name="DoctorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AppointmentPatient">
-          <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patients">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appointments">
-              <PropertyRef Name="PatientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AppointmentReceptionist_Appointment">
-          <End Role="Appointments" Type="Self.Appointments" Multiplicity="1" />
-          <End Role="AppointmentReceptionist" Type="Self.AppointmentReceptionist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appointments">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AppointmentReceptionist">
-              <PropertyRef Name="Appointments_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AppointmentReceptionist_Receptionist">
-          <End Role="Receptionists" Type="Self.Receptionists" Multiplicity="1" />
-          <End Role="AppointmentReceptionist" Type="Self.AppointmentReceptionist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Receptionists">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AppointmentReceptionist">
-              <PropertyRef Name="Receptionists_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DoctorAppointmentDoctor">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
-          <End Role="DoctorAppointments" Type="Self.DoctorAppointments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorAppointments">
-              <PropertyRef Name="DoctorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LocationDoctor_Doctor">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
-          <End Role="LocationDoctor" Type="Self.LocationDoctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="LocationDoctor">
-              <PropertyRef Name="Doctors_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LocationDoctor_Location">
-          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
-          <End Role="LocationDoctor" Type="Self.LocationDoctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Locations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="LocationDoctor">
-              <PropertyRef Name="Locations_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoginDoctor">
-          <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Logins">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Doctors">
-              <PropertyRef Name="LoginId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoginPatient">
-          <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
-          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Logins">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Patients">
-              <PropertyRef Name="LoginId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoginReceptionist">
-          <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
-          <End Role="Receptionists" Type="Self.Receptionists" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Logins">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Receptionists">
-              <PropertyRef Name="LoginId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PatientAppointmentPatient">
-          <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
-          <End Role="PatientAppointments" Type="Self.PatientAppointments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patients">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PatientAppointments">
-              <PropertyRef Name="PatientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DataEntityModelStoreContainer">
-          <EntitySet Name="AppointmentReceptionist" EntityType="Self.AppointmentReceptionist" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DoctorAppointments" EntityType="Self.DoctorAppointments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LocationDoctor" EntityType="Self.LocationDoctor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PatientAppointments" EntityType="Self.PatientAppointments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Receptionists" EntityType="Self.Receptionists" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AppointmentDoctor" Association="Self.FK_AppointmentDoctor">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="Appointments" EntitySet="Appointments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AppointmentPatient" Association="Self.FK_AppointmentPatient">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="Appointments" EntitySet="Appointments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AppointmentReceptionist_Appointment" Association="Self.FK_AppointmentReceptionist_Appointment">
-            <End Role="Appointments" EntitySet="Appointments" />
-            <End Role="AppointmentReceptionist" EntitySet="AppointmentReceptionist" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AppointmentReceptionist_Receptionist" Association="Self.FK_AppointmentReceptionist_Receptionist">
-            <End Role="Receptionists" EntitySet="Receptionists" />
-            <End Role="AppointmentReceptionist" EntitySet="AppointmentReceptionist" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DoctorAppointmentDoctor" Association="Self.FK_DoctorAppointmentDoctor">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="DoctorAppointments" EntitySet="DoctorAppointments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LocationDoctor_Doctor" Association="Self.FK_LocationDoctor_Doctor">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="LocationDoctor" EntitySet="LocationDoctor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LocationDoctor_Location" Association="Self.FK_LocationDoctor_Location">
-            <End Role="Locations" EntitySet="Locations" />
-            <End Role="LocationDoctor" EntitySet="LocationDoctor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoginDoctor" Association="Self.FK_LoginDoctor">
-            <End Role="Logins" EntitySet="Logins" />
-            <End Role="Doctors" EntitySet="Doctors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoginPatient" Association="Self.FK_LoginPatient">
-            <End Role="Logins" EntitySet="Logins" />
-            <End Role="Patients" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoginReceptionist" Association="Self.FK_LoginReceptionist">
-            <End Role="Logins" EntitySet="Logins" />
-            <End Role="Receptionists" EntitySet="Receptionists" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PatientAppointmentPatient" Association="Self.FK_PatientAppointmentPatient">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="PatientAppointments" EntitySet="PatientAppointments" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="DataEntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DataEntityModelStoreContainer">
+    <EntitySet Name="Patients" EntityType="DataEntityModel.Store.Patients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Doctors" EntityType="DataEntityModel.Store.Doctors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Receptionists" EntityType="DataEntityModel.Store.Receptionists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PatientAppointments" EntityType="DataEntityModel.Store.PatientAppointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Appointments" EntityType="DataEntityModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="DataEntityModel.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DoctorAppointments" EntityType="DataEntityModel.Store.DoctorAppointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Logins" EntityType="DataEntityModel.Store.Logins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationDoctor" EntityType="DataEntityModel.Store.LocationDoctor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AppointmentReceptionist" EntityType="DataEntityModel.Store.AppointmentReceptionist" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="LoginPatient" Association="DataEntityModel.Store.LoginPatient">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="LoginDoctor" Association="DataEntityModel.Store.LoginDoctor">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="LoginReceptionist" Association="DataEntityModel.Store.LoginReceptionist">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Receptionist" EntitySet="Receptionists" />
+    </AssociationSet>
+    <AssociationSet Name="DoctorAppointmentDoctor" Association="DataEntityModel.Store.DoctorAppointmentDoctor">
+      <End Role="DoctorAppointment" EntitySet="DoctorAppointments" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationDoctor_Location" Association="DataEntityModel.Store.FK_LocationDoctor_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="LocationDoctor" EntitySet="LocationDoctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationDoctor_Doctor" Association="DataEntityModel.Store.FK_LocationDoctor_Doctor">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="LocationDoctor" EntitySet="LocationDoctor" />
+    </AssociationSet>
+    <AssociationSet Name="AppointmentDoctor" Association="DataEntityModel.Store.AppointmentDoctor">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="AppointmentPatient" Association="DataEntityModel.Store.AppointmentPatient">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AppointmentReceptionist_Appointment" Association="DataEntityModel.Store.FK_AppointmentReceptionist_Appointment">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="AppointmentReceptionist" EntitySet="AppointmentReceptionist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AppointmentReceptionist_Receptionist" Association="DataEntityModel.Store.FK_AppointmentReceptionist_Receptionist">
+      <End Role="Receptionist" EntitySet="Receptionists" />
+      <End Role="AppointmentReceptionist" EntitySet="AppointmentReceptionist" />
+    </AssociationSet>
+    <AssociationSet Name="PatientAppointmentPatient" Association="DataEntityModel.Store.PatientAppointmentPatient">
+      <End Role="PatientAppointment" EntitySet="PatientAppointments" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Patients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Doctors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Specialty" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Receptionists">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientAppointments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Appointments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DoctorId" Type="int" Nullable="true" />
+    <Property Name="PatientId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DoctorAppointments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Logins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationDoctor">
+    <Key>
+      <PropertyRef Name="Locations_Id" />
+      <PropertyRef Name="Doctors_Id" />
+    </Key>
+    <Property Name="Locations_Id" Type="int" Nullable="false" />
+    <Property Name="Doctors_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppointmentReceptionist">
+    <Key>
+      <PropertyRef Name="Appointments_Id" />
+      <PropertyRef Name="Receptionists_Id" />
+    </Key>
+    <Property Name="Appointments_Id" Type="int" Nullable="false" />
+    <Property Name="Receptionists_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="LoginPatient">
+    <End Role="Login" Type="DataEntityModel.Store.Logins" Multiplicity="1" />
+    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoginDoctor">
+    <End Role="Login" Type="DataEntityModel.Store.Logins" Multiplicity="1" />
+    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoginReceptionist">
+    <End Role="Login" Type="DataEntityModel.Store.Logins" Multiplicity="1" />
+    <End Role="Receptionist" Type="DataEntityModel.Store.Receptionists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Receptionist">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DoctorAppointmentDoctor">
+    <End Role="DoctorAppointment" Type="DataEntityModel.Store.DoctorAppointments" Multiplicity="*" />
+    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DoctorAppointment">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AppointmentDoctor">
+    <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="*" />
+    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AppointmentPatient">
+    <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="*" />
+    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PatientAppointmentPatient">
+    <End Role="PatientAppointment" Type="DataEntityModel.Store.PatientAppointments" Multiplicity="*" />
+    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientAppointment">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationDoctor_Location">
+    <End Role="Location" Type="DataEntityModel.Store.Locations" Multiplicity="1" />
+    <End Role="LocationDoctor" Type="DataEntityModel.Store.LocationDoctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationDoctor">
+        <PropertyRef Name="Locations_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationDoctor_Doctor">
+    <End Role="LocationDoctor" Type="DataEntityModel.Store.LocationDoctor" Multiplicity="*" />
+    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationDoctor">
+        <PropertyRef Name="Doctors_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AppointmentReceptionist_Appointment">
+    <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="1" />
+    <End Role="AppointmentReceptionist" Type="DataEntityModel.Store.AppointmentReceptionist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AppointmentReceptionist">
+        <PropertyRef Name="Appointments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AppointmentReceptionist_Receptionist">
+    <End Role="AppointmentReceptionist" Type="DataEntityModel.Store.AppointmentReceptionist" Multiplicity="*" />
+    <End Role="Receptionist" Type="DataEntityModel.Store.Receptionists" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Receptionist">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AppointmentReceptionist">
+        <PropertyRef Name="Receptionists_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataEntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -329,10 +329,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DateOfBirth" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Address" Nullable="false" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" Nullable="false" />
+          <Property Name="Address" Nullable="false" Type="String" />
           <NavigationProperty Name="Login" Relationship="DataEntityModel.LoginPatient" FromRole="Patient" ToRole="Login" />
           <Property Name="LoginId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Appointments" Relationship="DataEntityModel.AppointmentPatient" FromRole="Patient" ToRole="Appointment" />
@@ -347,8 +347,8 @@
           <Property Name="LoginId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DoctorAppointments" Relationship="DataEntityModel.DoctorAppointmentDoctor" FromRole="Doctor" ToRole="DoctorAppointment" />
           <NavigationProperty Name="Locations" Relationship="DataEntityModel.LocationDoctor" FromRole="Doctor" ToRole="Location" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="Specialty" Type="DataEntityModel.Specialty" Nullable="false" />
           <NavigationProperty Name="Appointments" Relationship="DataEntityModel.AppointmentDoctor" FromRole="Doctor" ToRole="Appointment" />
         </EntityType>
@@ -374,9 +374,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Duration" Type="Int32" Nullable="false" />
-          <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Reason" Type="String" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="DataEntityModel.AppointmentDoctor" FromRole="Appointment" ToRole="Doctor" />
           <Property Name="DoctorId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Patient" Relationship="DataEntityModel.AppointmentPatient" FromRole="Appointment" ToRole="Patient" />
@@ -617,7 +617,6 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
