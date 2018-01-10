@@ -13,4 +13,9 @@
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Appointo.Entity\Appointo.Entity.csproj" />
+	  <ProjectReference Include="..\Appointo.Library\Appointo.Library.csproj" />
+	</ItemGroup>
+
 </Project>
