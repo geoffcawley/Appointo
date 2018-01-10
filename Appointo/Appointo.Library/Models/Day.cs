@@ -5,7 +5,7 @@ using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
-  class Day
+  public class Day
   {
     DateTime PatientDateTime = DateTime.UtcNow;
   }

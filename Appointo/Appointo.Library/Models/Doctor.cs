@@ -5,7 +5,7 @@ using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
-  class Doctor
+  public class Doctor
   {
     public int DoctorID = 0;
     public string DocFirstName { get; set; }
