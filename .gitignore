@@ -308,7 +308,3 @@ __pycache__/
 # should be stored in the .pubxml.user file.
 
 # End of https://www.gitignore.io/api/visualstudio
-
-
-**/*.config
-*.config
