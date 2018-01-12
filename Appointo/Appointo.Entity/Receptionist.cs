@@ -21,6 +21,7 @@ namespace Appointo.Entity
     
         public int Id { get; set; }
         public int LoginId { get; set; }
+        public string ReceptionistName { get; set; }
     
         public virtual Login Login { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }

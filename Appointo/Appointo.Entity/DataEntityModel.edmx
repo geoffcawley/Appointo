@@ -360,6 +360,7 @@
           <NavigationProperty Name="Login" Relationship="DataEntityModel.LoginReceptionist" FromRole="Receptionist" ToRole="Login" />
           <Property Name="LoginId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Appointments" Relationship="DataEntityModel.AppointmentReceptionist" FromRole="Receptionist" ToRole="Appointment" />
+          <Property Name="ReceptionistName" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientAppointment">
           <Key>
@@ -389,6 +390,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Doctors" Relationship="DataEntityModel.LocationDoctor" FromRole="Location" ToRole="Doctor" />
+          <Property Name="RoomNo" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DoctorAppointment">
           <Key>
@@ -406,6 +408,8 @@
           <NavigationProperty Name="Patients" Relationship="DataEntityModel.LoginPatient" FromRole="Login" ToRole="Patient" />
           <NavigationProperty Name="Doctors" Relationship="DataEntityModel.LoginDoctor" FromRole="Login" ToRole="Doctor" />
           <NavigationProperty Name="Receptionists" Relationship="DataEntityModel.LoginReceptionist" FromRole="Login" ToRole="Receptionist" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="LoginPatient">
           <End Type="DataEntityModel.Login" Role="Login" Multiplicity="1" />
