@@ -22,8 +22,6 @@ namespace Appointo.Entity
         }
     
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
     
         public virtual ICollection<Patient> Patients { get; set; }
         public virtual ICollection<Doctor> Doctors { get; set; }
