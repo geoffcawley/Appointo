@@ -117,11 +117,6 @@
     <Compile Include="Appointment.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataEntityModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataEntityModel.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataEntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
