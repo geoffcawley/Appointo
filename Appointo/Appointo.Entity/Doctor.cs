@@ -16,9 +16,8 @@ namespace Appointo.Entity
     {
         public Doctor()
         {
-            this.DoctorAppointments = new HashSet<DoctorAppointment>();
             this.Locations = new HashSet<Location>();
-            this.Appointments = new HashSet<Appointment>();
+            this.DoctorPatientAppointments = new HashSet<DoctorPatientAppointment>();
         }
     
         public int Id { get; set; }
@@ -27,9 +26,7 @@ namespace Appointo.Entity
         public string LastName { get; set; }
         public Specialty Specialty { get; set; }
     
-        public virtual Login Login { get; set; }
-        public virtual ICollection<DoctorAppointment> DoctorAppointments { get; set; }
         public virtual ICollection<Location> Locations { get; set; }
-        public virtual ICollection<Appointment> Appointments { get; set; }
+        public virtual ICollection<DoctorPatientAppointment> DoctorPatientAppointments { get; set; }
     }
 }

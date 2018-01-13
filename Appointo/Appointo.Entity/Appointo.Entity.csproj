@@ -114,8 +114,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Appointment.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataEntityModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntityModel.cs">
       <AutoGen>True</AutoGen>
@@ -140,7 +148,7 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="DoctorAppointment.cs">
+    <Compile Include="DoctorPatientAppointment.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Location.cs">
@@ -150,9 +158,6 @@
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Patient.cs">
-      <DependentUpon>DbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PatientAppointment.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,28 +9,16 @@
     <EntitySet Name="Patients" EntityType="DataEntityModel.Store.Patients" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doctors" EntityType="DataEntityModel.Store.Doctors" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Receptionists" EntityType="DataEntityModel.Store.Receptionists" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PatientAppointments" EntityType="DataEntityModel.Store.PatientAppointments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Appointments" EntityType="DataEntityModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Locations" EntityType="DataEntityModel.Store.Locations" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DoctorAppointments" EntityType="DataEntityModel.Store.DoctorAppointments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Logins" EntityType="DataEntityModel.Store.Logins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DoctorPatientAppointments" EntityType="DataEntityModel.Store.DoctorPatientAppointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="DataEntityModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LocationDoctor" EntityType="DataEntityModel.Store.LocationDoctor" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AppointmentReceptionist" EntityType="DataEntityModel.Store.AppointmentReceptionist" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="LoginPatient" Association="DataEntityModel.Store.LoginPatient">
-      <End Role="Login" EntitySet="Logins" />
-      <End Role="Patient" EntitySet="Patients" />
-    </AssociationSet>
-    <AssociationSet Name="LoginDoctor" Association="DataEntityModel.Store.LoginDoctor">
-      <End Role="Login" EntitySet="Logins" />
-      <End Role="Doctor" EntitySet="Doctors" />
-    </AssociationSet>
     <AssociationSet Name="LoginReceptionist" Association="DataEntityModel.Store.LoginReceptionist">
       <End Role="Login" EntitySet="Logins" />
       <End Role="Receptionist" EntitySet="Receptionists" />
-    </AssociationSet>
-    <AssociationSet Name="DoctorAppointmentDoctor" Association="DataEntityModel.Store.DoctorAppointmentDoctor">
-      <End Role="DoctorAppointment" EntitySet="DoctorAppointments" />
-      <End Role="Doctor" EntitySet="Doctors" />
     </AssociationSet>
     <AssociationSet Name="FK_LocationDoctor_Location" Association="DataEntityModel.Store.FK_LocationDoctor_Location">
       <End Role="Location" EntitySet="Locations" />
@@ -40,14 +28,6 @@
       <End Role="Doctor" EntitySet="Doctors" />
       <End Role="LocationDoctor" EntitySet="LocationDoctor" />
     </AssociationSet>
-    <AssociationSet Name="AppointmentDoctor" Association="DataEntityModel.Store.AppointmentDoctor">
-      <End Role="Appointment" EntitySet="Appointments" />
-      <End Role="Doctor" EntitySet="Doctors" />
-    </AssociationSet>
-    <AssociationSet Name="AppointmentPatient" Association="DataEntityModel.Store.AppointmentPatient">
-      <End Role="Appointment" EntitySet="Appointments" />
-      <End Role="Patient" EntitySet="Patients" />
-    </AssociationSet>
     <AssociationSet Name="FK_AppointmentReceptionist_Appointment" Association="DataEntityModel.Store.FK_AppointmentReceptionist_Appointment">
       <End Role="Appointment" EntitySet="Appointments" />
       <End Role="AppointmentReceptionist" EntitySet="AppointmentReceptionist" />
@@ -56,8 +36,20 @@
       <End Role="Receptionist" EntitySet="Receptionists" />
       <End Role="AppointmentReceptionist" EntitySet="AppointmentReceptionist" />
     </AssociationSet>
-    <AssociationSet Name="PatientAppointmentPatient" Association="DataEntityModel.Store.PatientAppointmentPatient">
-      <End Role="PatientAppointment" EntitySet="PatientAppointments" />
+    <AssociationSet Name="DoctorDoctorPatientAppointment" Association="DataEntityModel.Store.DoctorDoctorPatientAppointment">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
+    </AssociationSet>
+    <AssociationSet Name="PatientDoctorPatientAppointment" Association="DataEntityModel.Store.PatientDoctorPatientAppointment">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
+    </AssociationSet>
+    <AssociationSet Name="DoctorPatientAppointmentAppointment" Association="DataEntityModel.Store.DoctorPatientAppointmentAppointment">
+      <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="AddressPatient" Association="DataEntityModel.Store.AddressPatient">
+      <End Role="Address" EntitySet="Addresses" />
       <End Role="Patient" EntitySet="Patients" />
     </AssociationSet>
   </EntityContainer>
@@ -69,8 +61,8 @@
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LoginId" Type="int" Nullable="false" />
+    <Property Name="AddressId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Doctors">
     <Key>
@@ -89,13 +81,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LoginId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="PatientAppointments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PatientId" Type="int" Nullable="true" />
-  </EntityType>
   <EntityType Name="Appointments">
     <Key>
       <PropertyRef Name="Id" />
@@ -104,27 +89,41 @@
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="Duration" Type="int" Nullable="false" />
     <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DoctorId" Type="int" Nullable="true" />
-    <Property Name="PatientId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Locations">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
-  <EntityType Name="DoctorAppointments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DoctorId" Type="int" Nullable="true" />
+    <Property Name="RoomNumber" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Logins">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DoctorPatientAppointments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorId" Type="int" Nullable="false" />
+    <Property Name="PatientId" Type="int" Nullable="false" />
+    <Property Name="Appointment_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressLine1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressLine2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="LocationDoctor">
     <Key>
@@ -142,30 +141,6 @@
     <Property Name="Appointments_Id" Type="int" Nullable="false" />
     <Property Name="Receptionists_Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="LoginPatient">
-    <End Role="Login" Type="DataEntityModel.Store.Logins" Multiplicity="1" />
-    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Login">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Patient">
-        <PropertyRef Name="LoginId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="LoginDoctor">
-    <End Role="Login" Type="DataEntityModel.Store.Logins" Multiplicity="1" />
-    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Login">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Doctor">
-        <PropertyRef Name="LoginId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="LoginReceptionist">
     <End Role="Login" Type="DataEntityModel.Store.Logins" Multiplicity="1" />
     <End Role="Receptionist" Type="DataEntityModel.Store.Receptionists" Multiplicity="*" />
@@ -178,51 +153,51 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="DoctorAppointmentDoctor">
-    <End Role="DoctorAppointment" Type="DataEntityModel.Store.DoctorAppointments" Multiplicity="*" />
-    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="0..1" />
+  <Association Name="DoctorDoctorPatientAppointment">
+    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="1" />
+    <End Role="DoctorPatientAppointment" Type="DataEntityModel.Store.DoctorPatientAppointments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Doctor">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="DoctorAppointment">
+      <Dependent Role="DoctorPatientAppointment">
         <PropertyRef Name="DoctorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AppointmentDoctor">
-    <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="*" />
-    <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Doctor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Appointment">
-        <PropertyRef Name="DoctorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AppointmentPatient">
-    <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="*" />
-    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="0..1" />
+  <Association Name="PatientDoctorPatientAppointment">
+    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="1" />
+    <End Role="DoctorPatientAppointment" Type="DataEntityModel.Store.DoctorPatientAppointments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Patient">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Appointment">
+      <Dependent Role="DoctorPatientAppointment">
         <PropertyRef Name="PatientId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="PatientAppointmentPatient">
-    <End Role="PatientAppointment" Type="DataEntityModel.Store.PatientAppointments" Multiplicity="*" />
-    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="0..1" />
+  <Association Name="DoctorPatientAppointmentAppointment">
+    <End Role="DoctorPatientAppointment" Type="DataEntityModel.Store.DoctorPatientAppointments" Multiplicity="*" />
+    <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Patient">
+      <Principal Role="Appointment">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="PatientAppointment">
-        <PropertyRef Name="PatientId" />
+      <Dependent Role="DoctorPatientAppointment">
+        <PropertyRef Name="Appointment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AddressPatient">
+    <End Role="Address" Type="DataEntityModel.Store.Addresses" Multiplicity="1" />
+    <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="AddressId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -282,45 +257,37 @@
           <EntitySet Name="Patients" EntityType="DataEntityModel.Patient" />
           <EntitySet Name="Doctors" EntityType="DataEntityModel.Doctor" />
           <EntitySet Name="Receptionists" EntityType="DataEntityModel.Receptionist" />
-          <EntitySet Name="PatientAppointments" EntityType="DataEntityModel.PatientAppointment" />
           <EntitySet Name="Appointments" EntityType="DataEntityModel.Appointment" />
           <EntitySet Name="Locations" EntityType="DataEntityModel.Location" />
-          <EntitySet Name="DoctorAppointments" EntityType="DataEntityModel.DoctorAppointment" />
           <EntitySet Name="Logins" EntityType="DataEntityModel.Login" />
-          <AssociationSet Name="LoginPatient" Association="DataEntityModel.LoginPatient">
-            <End Role="Login" EntitySet="Logins" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="LoginDoctor" Association="DataEntityModel.LoginDoctor">
-            <End Role="Login" EntitySet="Logins" />
-            <End Role="Doctor" EntitySet="Doctors" />
-          </AssociationSet>
           <AssociationSet Name="LoginReceptionist" Association="DataEntityModel.LoginReceptionist">
             <End Role="Login" EntitySet="Logins" />
             <End Role="Receptionist" EntitySet="Receptionists" />
-          </AssociationSet>
-          <AssociationSet Name="DoctorAppointmentDoctor" Association="DataEntityModel.DoctorAppointmentDoctor">
-            <End Role="DoctorAppointment" EntitySet="DoctorAppointments" />
-            <End Role="Doctor" EntitySet="Doctors" />
           </AssociationSet>
           <AssociationSet Name="LocationDoctor" Association="DataEntityModel.LocationDoctor">
             <End Role="Location" EntitySet="Locations" />
             <End Role="Doctor" EntitySet="Doctors" />
           </AssociationSet>
-          <AssociationSet Name="AppointmentDoctor" Association="DataEntityModel.AppointmentDoctor">
-            <End Role="Appointment" EntitySet="Appointments" />
-            <End Role="Doctor" EntitySet="Doctors" />
-          </AssociationSet>
-          <AssociationSet Name="AppointmentPatient" Association="DataEntityModel.AppointmentPatient">
-            <End Role="Appointment" EntitySet="Appointments" />
-            <End Role="Patient" EntitySet="Patients" />
-          </AssociationSet>
           <AssociationSet Name="AppointmentReceptionist" Association="DataEntityModel.AppointmentReceptionist">
             <End Role="Appointment" EntitySet="Appointments" />
             <End Role="Receptionist" EntitySet="Receptionists" />
           </AssociationSet>
-          <AssociationSet Name="PatientAppointmentPatient" Association="DataEntityModel.PatientAppointmentPatient">
-            <End Role="PatientAppointment" EntitySet="PatientAppointments" />
+          <EntitySet Name="DoctorPatientAppointments" EntityType="DataEntityModel.DoctorPatientAppointment" />
+          <AssociationSet Name="DoctorDoctorPatientAppointment" Association="DataEntityModel.DoctorDoctorPatientAppointment">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="PatientDoctorPatientAppointment" Association="DataEntityModel.PatientDoctorPatientAppointment">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="DoctorPatientAppointmentAppointment" Association="DataEntityModel.DoctorPatientAppointmentAppointment">
+            <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <EntitySet Name="Addresses" EntityType="DataEntityModel.Address" />
+          <AssociationSet Name="AddressPatient" Association="DataEntityModel.AddressPatient">
+            <End Role="Address" EntitySet="Addresses" />
             <End Role="Patient" EntitySet="Patients" />
           </AssociationSet>
         </EntityContainer>
@@ -332,25 +299,22 @@
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="DateOfBirth" Type="String" Nullable="false" />
-          <Property Name="Address" Nullable="false" Type="String" />
-          <NavigationProperty Name="Login" Relationship="DataEntityModel.LoginPatient" FromRole="Patient" ToRole="Login" />
           <Property Name="LoginId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Appointments" Relationship="DataEntityModel.AppointmentPatient" FromRole="Patient" ToRole="Appointment" />
-          <NavigationProperty Name="PatientAppointments" Relationship="DataEntityModel.PatientAppointmentPatient" FromRole="Patient" ToRole="PatientAppointment" />
+          <NavigationProperty Name="DoctorPatientAppointments" Relationship="DataEntityModel.PatientDoctorPatientAppointment" FromRole="Patient" ToRole="DoctorPatientAppointment" />
+          <NavigationProperty Name="Address" Relationship="DataEntityModel.AddressPatient" FromRole="Patient" ToRole="Address" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Login" Relationship="DataEntityModel.LoginDoctor" FromRole="Doctor" ToRole="Login" />
           <Property Name="LoginId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DoctorAppointments" Relationship="DataEntityModel.DoctorAppointmentDoctor" FromRole="Doctor" ToRole="DoctorAppointment" />
           <NavigationProperty Name="Locations" Relationship="DataEntityModel.LocationDoctor" FromRole="Doctor" ToRole="Location" />
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="Specialty" Type="DataEntityModel.Specialty" Nullable="false" />
-          <NavigationProperty Name="Appointments" Relationship="DataEntityModel.AppointmentDoctor" FromRole="Doctor" ToRole="Appointment" />
+          <NavigationProperty Name="DoctorPatientAppointments" Relationship="DataEntityModel.DoctorDoctorPatientAppointment" FromRole="Doctor" ToRole="DoctorPatientAppointment" />
         </EntityType>
         <EntityType Name="Receptionist">
           <Key>
@@ -361,14 +325,6 @@
           <Property Name="LoginId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Appointments" Relationship="DataEntityModel.AppointmentReceptionist" FromRole="Receptionist" ToRole="Appointment" />
         </EntityType>
-        <EntityType Name="PatientAppointment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Patient" Relationship="DataEntityModel.PatientAppointmentPatient" FromRole="PatientAppointment" ToRole="Patient" />
-          <Property Name="PatientId" Type="Int32" Nullable="true" />
-        </EntityType>
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="Id" />
@@ -377,11 +333,8 @@
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Duration" Type="Int32" Nullable="false" />
           <Property Name="Reason" Type="String" Nullable="false" />
-          <NavigationProperty Name="Doctor" Relationship="DataEntityModel.AppointmentDoctor" FromRole="Appointment" ToRole="Doctor" />
-          <Property Name="DoctorId" Type="Int32" Nullable="true" />
-          <NavigationProperty Name="Patient" Relationship="DataEntityModel.AppointmentPatient" FromRole="Appointment" ToRole="Patient" />
-          <Property Name="PatientId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Receptionists" Relationship="DataEntityModel.AppointmentReceptionist" FromRole="Appointment" ToRole="Receptionist" />
+          <NavigationProperty Name="DoctorPatientAppointment" Relationship="DataEntityModel.DoctorPatientAppointmentAppointment" FromRole="Appointment" ToRole="DoctorPatientAppointment" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -389,48 +342,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Doctors" Relationship="DataEntityModel.LocationDoctor" FromRole="Location" ToRole="Doctor" />
-        </EntityType>
-        <EntityType Name="DoctorAppointment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Doctor" Relationship="DataEntityModel.DoctorAppointmentDoctor" FromRole="DoctorAppointment" ToRole="Doctor" />
-          <Property Name="DoctorId" Type="Int32" Nullable="true" />
+          <Property Name="RoomNumber" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Patients" Relationship="DataEntityModel.LoginPatient" FromRole="Login" ToRole="Patient" />
-          <NavigationProperty Name="Doctors" Relationship="DataEntityModel.LoginDoctor" FromRole="Login" ToRole="Doctor" />
           <NavigationProperty Name="Receptionists" Relationship="DataEntityModel.LoginReceptionist" FromRole="Login" ToRole="Receptionist" />
+          <Property Name="LoginID" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="LoginPatient">
-          <End Type="DataEntityModel.Login" Role="Login" Multiplicity="1" />
-          <End Type="DataEntityModel.Patient" Role="Patient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Login">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Patient">
-              <PropertyRef Name="LoginId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="LoginDoctor">
-          <End Type="DataEntityModel.Login" Role="Login" Multiplicity="1" />
-          <End Type="DataEntityModel.Doctor" Role="Doctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Login">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Doctor">
-              <PropertyRef Name="LoginId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="LoginReceptionist">
           <End Type="DataEntityModel.Login" Role="Login" Multiplicity="1" />
           <End Type="DataEntityModel.Receptionist" Role="Receptionist" Multiplicity="*" />
@@ -440,18 +362,6 @@
             </Principal>
             <Dependent Role="Receptionist">
               <PropertyRef Name="LoginId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DoctorAppointmentDoctor">
-          <End Type="DataEntityModel.DoctorAppointment" Role="DoctorAppointment" Multiplicity="*" />
-          <End Type="DataEntityModel.Doctor" Role="Doctor" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Doctor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorAppointment">
-              <PropertyRef Name="DoctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -466,43 +376,70 @@
           <Member Name="Psychiatrist" />
           <Member Name="Oncologist" />
         </EnumType>
-        <Association Name="AppointmentDoctor">
-          <End Type="DataEntityModel.Appointment" Role="Appointment" Multiplicity="*" />
-          <End Type="DataEntityModel.Doctor" Role="Doctor" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Doctor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="DoctorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AppointmentPatient">
-          <End Type="DataEntityModel.Appointment" Role="Appointment" Multiplicity="*" />
-          <End Type="DataEntityModel.Patient" Role="Patient" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Patient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="PatientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AppointmentReceptionist">
           <End Type="DataEntityModel.Appointment" Role="Appointment" Multiplicity="*" />
           <End Type="DataEntityModel.Receptionist" Role="Receptionist" Multiplicity="*" />
         </Association>
-        <Association Name="PatientAppointmentPatient">
-          <End Type="DataEntityModel.PatientAppointment" Role="PatientAppointment" Multiplicity="*" />
-          <End Type="DataEntityModel.Patient" Role="Patient" Multiplicity="0..1" />
+        <EntityType Name="DoctorPatientAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Doctor" Relationship="DataEntityModel.DoctorDoctorPatientAppointment" FromRole="DoctorPatientAppointment" ToRole="Doctor" />
+          <Property Name="DoctorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="DataEntityModel.PatientDoctorPatientAppointment" FromRole="DoctorPatientAppointment" ToRole="Patient" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointment" Relationship="DataEntityModel.DoctorPatientAppointmentAppointment" FromRole="DoctorPatientAppointment" ToRole="Appointment" />
+        </EntityType>
+        <Association Name="DoctorDoctorPatientAppointment">
+          <End Type="DataEntityModel.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="DataEntityModel.DoctorPatientAppointment" Role="DoctorPatientAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorPatientAppointment">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatientDoctorPatientAppointment">
+          <End Type="DataEntityModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="DataEntityModel.DoctorPatientAppointment" Role="DoctorPatientAppointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patient">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientAppointment">
+            <Dependent Role="DoctorPatientAppointment">
               <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DoctorPatientAppointmentAppointment">
+          <End Type="DataEntityModel.DoctorPatientAppointment" Role="DoctorPatientAppointment" Multiplicity="1" />
+          <End Type="DataEntityModel.Appointment" Role="Appointment" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" />
+          <NavigationProperty Name="Patients" Relationship="DataEntityModel.AddressPatient" FromRole="Address" ToRole="Patient" />
+        </EntityType>
+        <Association Name="AddressPatient">
+          <End Type="DataEntityModel.Address" Role="Address" Multiplicity="1" />
+          <End Type="DataEntityModel.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="AddressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -519,8 +456,8 @@
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -543,14 +480,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PatientAppointments">
-      <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.PatientAppointment)">
-        <MappingFragment StoreEntitySet="PatientAppointments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Appointments">
       <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.Appointment)">
         <MappingFragment StoreEntitySet="Appointments">
@@ -558,8 +487,6 @@
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
           <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
-          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -567,14 +494,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.Location)">
         <MappingFragment StoreEntitySet="Locations">
           <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DoctorAppointments">
-      <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.DoctorAppointment)">
-        <MappingFragment StoreEntitySet="DoctorAppointments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -582,6 +502,29 @@
       <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.Login)">
         <MappingFragment StoreEntitySet="Logins">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorPatientAppointments">
+      <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.DoctorPatientAppointment)">
+        <MappingFragment StoreEntitySet="DoctorPatientAppointments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -599,6 +542,14 @@
       </EndProperty>
       <EndProperty Name="Receptionist">
         <ScalarProperty Name="Id" ColumnName="Receptionists_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DoctorPatientAppointmentAppointment" TypeName="DataEntityModel.DoctorPatientAppointmentAppointment" StoreEntitySet="DoctorPatientAppointments">
+      <EndProperty Name="Appointment">
+        <ScalarProperty Name="Id" ColumnName="Appointment_Id" />
+      </EndProperty>
+      <EndProperty Name="DoctorPatientAppointment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

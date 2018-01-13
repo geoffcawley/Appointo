@@ -20,6 +20,7 @@ namespace Appointo.Entity
         }
     
         public int Id { get; set; }
+        public int RoomNumber { get; set; }
     
         public virtual ICollection<Doctor> Doctors { get; set; }
     }

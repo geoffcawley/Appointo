@@ -16,15 +16,13 @@ namespace Appointo.Entity
     {
         public Login()
         {
-            this.Patients = new HashSet<Patient>();
-            this.Doctors = new HashSet<Doctor>();
             this.Receptionists = new HashSet<Receptionist>();
         }
     
         public int Id { get; set; }
+        public string LoginID { get; set; }
+        public string Password { get; set; }
     
-        public virtual ICollection<Patient> Patients { get; set; }
-        public virtual ICollection<Doctor> Doctors { get; set; }
         public virtual ICollection<Receptionist> Receptionists { get; set; }
     }
 }
