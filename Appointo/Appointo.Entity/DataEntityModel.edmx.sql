@@ -2,14 +2,14 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/14/2018 22:48:03
--- Generated from EDMX file: C:\Appointo\Appointo\Appointo.Entity\DataEntityModel.edmx
+-- Date Created: 01/14/2018 22:51:44
+-- Generated from EDMX file: C:\Users\Bak\Documents\revature\Appointo\Appointo\Appointo\Appointo.Entity\DataEntityModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Appointo.Entity];
-GO
+--USE [master];
+--GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
@@ -38,11 +38,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PatientDoctorPatientAppointment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DoctorPatientAppointments] DROP CONSTRAINT [FK_PatientDoctorPatientAppointment];
 GO
-IF OBJECT_ID(N'[dbo].[FK_DoctorPatientAppointmentAppointment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DoctorPatientAppointments] DROP CONSTRAINT [FK_DoctorPatientAppointmentAppointment];
-GO
 IF OBJECT_ID(N'[dbo].[FK_AddressPatient]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Patients] DROP CONSTRAINT [FK_AddressPatient];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DoctorPatientAppointmentAppointment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DoctorPatientAppointments] DROP CONSTRAINT [FK_DoctorPatientAppointmentAppointment];
 GO
 
 -- --------------------------------------------------
