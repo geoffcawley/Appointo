@@ -9,7 +9,7 @@ namespace Appointo.Library.Models
   {
     private LibHelper()
     {
-      int i = 1;
+      //int i = 1;
     }
   }
 }
