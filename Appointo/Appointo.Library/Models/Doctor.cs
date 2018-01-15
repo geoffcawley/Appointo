@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-//using Appointo.Entity;
+using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
@@ -10,10 +10,8 @@ namespace Appointo.Library.Models
   {
 		[Key]
 		public int Id { get; set; }
-		public int DoctorID = 0;
     public string DocFirstName { get; set; }
     public string DocLastName { get; set; }
     public string Speciality { get; set; }
-    //also takes location
   }
 }

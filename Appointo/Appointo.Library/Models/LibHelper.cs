@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-//using Appointo.Entity;
+using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
@@ -9,7 +9,6 @@ namespace Appointo.Library.Models
   {
     private LibHelper()
     {
-      //int i = 1;
     }
   }
 }

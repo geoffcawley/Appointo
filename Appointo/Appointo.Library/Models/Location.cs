@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-//using Appointo.Entity;
+using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
@@ -10,7 +10,6 @@ namespace Appointo.Library.Models
   {
 		[Key]
 		public int Id { get; set; }
-		public string Name { get; set; }
-    //also takes address class
+		public int RoomNumber { get; set; }
   }
 }

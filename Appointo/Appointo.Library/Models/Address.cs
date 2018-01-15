@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-//using Appointo.Entity;
+using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
@@ -11,7 +11,7 @@ namespace Appointo.Library.Models
 		[Key]
 		public int Id { get; set; }
 		public string AddressLine1 { get; set; }
-    public string AddressLine2 { get; set; }
+    public string AddressLine2 { get; set; } //this is set to not null in db
     public string City { get; set; }
     public string State { get; set; }
     public int ZipCode = 0;
