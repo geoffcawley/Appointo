@@ -61,7 +61,6 @@
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LoginId" Type="int" Nullable="false" />
     <Property Name="AddressId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Doctors">
@@ -69,7 +68,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LoginId" Type="int" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Specialty" Type="int" Nullable="false" />
@@ -302,7 +300,6 @@
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="DateOfBirth" Type="String" Nullable="false" />
-          <Property Name="LoginId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DoctorPatientAppointments" Relationship="DataEntityModel.PatientDoctorPatientAppointment" FromRole="Patient" ToRole="DoctorPatientAppointment" />
           <NavigationProperty Name="Address" Relationship="DataEntityModel.AddressPatient" FromRole="Patient" ToRole="Address" />
           <Property Name="AddressId" Type="Int32" Nullable="false" />
@@ -312,7 +309,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Locations" Relationship="DataEntityModel.LocationDoctor" FromRole="Doctor" ToRole="Location" />
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
@@ -471,7 +467,6 @@
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
           <ScalarProperty Name="AddressId" ColumnName="AddressId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -480,7 +475,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(DataEntityModel.Doctor)">
         <MappingFragment StoreEntitySet="Doctors">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Specialty" ColumnName="Specialty" />

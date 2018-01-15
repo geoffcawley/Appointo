@@ -23,7 +23,6 @@ namespace Appointo.Entity
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DateOfBirth { get; set; }
-        public int LoginId { get; set; }
         public int AddressId { get; set; }
     
         public virtual ICollection<DoctorPatientAppointment> DoctorPatientAppointments { get; set; }
