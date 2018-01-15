@@ -17,14 +17,16 @@ namespace Appointo.Entity
         public Appointment()
         {
             this.Receptionists = new HashSet<Receptionist>();
+            this.DoctorPatientAppointments = new HashSet<DoctorPatientAppointment>();
         }
     
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public int Duration { get; set; }
         public string Reason { get; set; }
+        public int DoctorPatientAppointmentId { get; set; }
     
         public virtual ICollection<Receptionist> Receptionists { get; set; }
-        public virtual DoctorPatientAppointment DoctorPatientAppointment { get; set; }
+        public virtual ICollection<DoctorPatientAppointment> DoctorPatientAppointments { get; set; }
     }
 }

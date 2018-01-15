@@ -17,9 +17,9 @@
         <EntityTypeShape EntityType="DataEntityModel.DoctorPatientAppointment" Width="1.5" PointX="3.75" PointY="0.875" />
         <AssociationConnector Association="DataEntityModel.DoctorDoctorPatientAppointment" />
         <AssociationConnector Association="DataEntityModel.PatientDoctorPatientAppointment" />
-        <AssociationConnector Association="DataEntityModel.DoctorPatientAppointmentAppointment" />
         <EntityTypeShape EntityType="DataEntityModel.Address" Width="1.5" PointX="8.375" PointY="3.5" />
         <AssociationConnector Association="DataEntityModel.AddressPatient" />
+        <AssociationConnector Association="DataEntityModel.DoctorPatientAppointmentAppointment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

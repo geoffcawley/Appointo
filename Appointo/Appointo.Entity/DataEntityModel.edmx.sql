@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/13/2018 14:33:02
+-- Date Created: 01/14/2018 22:48:03
 -- Generated from EDMX file: C:\Appointo\Appointo\Appointo.Entity\DataEntityModel.edmx
 -- --------------------------------------------------
 
@@ -40,6 +40,9 @@ IF OBJECT_ID(N'[dbo].[FK_PatientDoctorPatientAppointment]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_DoctorPatientAppointmentAppointment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DoctorPatientAppointments] DROP CONSTRAINT [FK_DoctorPatientAppointmentAppointment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AddressPatient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Patients] DROP CONSTRAINT [FK_AddressPatient];
 GO
 
 -- --------------------------------------------------
@@ -105,7 +108,9 @@ GO
 -- Creating table 'Receptionists'
 CREATE TABLE [dbo].[Receptionists] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [LoginId] int  NOT NULL
+    [LoginId] int  NOT NULL,
+    [FirstName] nvarchar(max)  NOT NULL,
+    [LastName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -114,7 +119,8 @@ CREATE TABLE [dbo].[Appointments] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
     [Duration] int  NOT NULL,
-    [Reason] nvarchar(max)  NOT NULL
+    [Reason] nvarchar(max)  NOT NULL,
+    [DoctorPatientAppointmentId] int  NOT NULL
 );
 GO
 
@@ -138,7 +144,7 @@ CREATE TABLE [dbo].[DoctorPatientAppointments] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DoctorId] int  NOT NULL,
     [PatientId] int  NOT NULL,
-    [Appointment_Id] int  NOT NULL
+    [AppointmentId] int  NOT NULL
 );
 GO
 
@@ -328,21 +334,6 @@ ON [dbo].[DoctorPatientAppointments]
     ([PatientId]);
 GO
 
--- Creating foreign key on [Appointment_Id] in table 'DoctorPatientAppointments'
-ALTER TABLE [dbo].[DoctorPatientAppointments]
-ADD CONSTRAINT [FK_DoctorPatientAppointmentAppointment]
-    FOREIGN KEY ([Appointment_Id])
-    REFERENCES [dbo].[Appointments]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DoctorPatientAppointmentAppointment'
-CREATE INDEX [IX_FK_DoctorPatientAppointmentAppointment]
-ON [dbo].[DoctorPatientAppointments]
-    ([Appointment_Id]);
-GO
-
 -- Creating foreign key on [AddressId] in table 'Patients'
 ALTER TABLE [dbo].[Patients]
 ADD CONSTRAINT [FK_AddressPatient]
@@ -356,6 +347,21 @@ GO
 CREATE INDEX [IX_FK_AddressPatient]
 ON [dbo].[Patients]
     ([AddressId]);
+GO
+
+-- Creating foreign key on [AppointmentId] in table 'DoctorPatientAppointments'
+ALTER TABLE [dbo].[DoctorPatientAppointments]
+ADD CONSTRAINT [FK_DoctorPatientAppointmentAppointment]
+    FOREIGN KEY ([AppointmentId])
+    REFERENCES [dbo].[Appointments]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DoctorPatientAppointmentAppointment'
+CREATE INDEX [IX_FK_DoctorPatientAppointmentAppointment]
+ON [dbo].[DoctorPatientAppointments]
+    ([AppointmentId]);
 GO
 
 -- --------------------------------------------------
