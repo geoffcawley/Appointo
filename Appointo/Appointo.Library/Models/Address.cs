@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using Appointo.Entity;
+//using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
