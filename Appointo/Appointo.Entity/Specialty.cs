@@ -17,6 +17,7 @@ namespace Appointo.Entity
         Pediatrics = 1,
         Neurologist = 2,
         Psychiatrist = 3,
-        Oncologist = 4
+        Oncologist = 4,
+        Diagnostician = 5
     }
 }
