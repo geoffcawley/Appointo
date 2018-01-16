@@ -24,7 +24,6 @@ namespace Appointo.Entity
         public System.DateTime Date { get; set; }
         public int Duration { get; set; }
         public string Reason { get; set; }
-        public int DoctorPatientAppointmentId { get; set; }
     
         public virtual ICollection<Receptionist> Receptionists { get; set; }
         public virtual ICollection<DoctorPatientAppointment> DoctorPatientAppointments { get; set; }

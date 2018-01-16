@@ -48,10 +48,10 @@
       <End Role="Address" EntitySet="Addresses" />
       <End Role="Patient" EntitySet="Patients" />
     </AssociationSet>
-    <!--<AssociationSet Name="DoctorPatientAppointmentAppointment" Association="DataEntityModel.Store.DoctorPatientAppointmentAppointment">
+    <AssociationSet Name="DoctorPatientAppointmentAppointment" Association="DataEntityModel.Store.DoctorPatientAppointmentAppointment">
       <End Role="DoctorPatientAppointment" EntitySet="DoctorPatientAppointments" />
       <End Role="Appointment" EntitySet="Appointments" />
-    </AssociationSet>-->
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Patients">
     <Key>
@@ -153,7 +153,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--<Association Name="DoctorDoctorPatientAppointment">
+  <Association Name="DoctorDoctorPatientAppointment">
     <End Role="Doctor" Type="DataEntityModel.Store.Doctors" Multiplicity="1" />
     <End Role="DoctorPatientAppointment" Type="DataEntityModel.Store.DoctorPatientAppointments" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,7 +176,7 @@
         <PropertyRef Name="PatientId" />
       </Dependent>
     </ReferentialConstraint>
-  </Association> -->
+  </Association>
   <Association Name="AddressPatient">
     <End Role="Address" Type="DataEntityModel.Store.Addresses" Multiplicity="1" />
     <End Role="Patient" Type="DataEntityModel.Store.Patients" Multiplicity="*" />
@@ -189,7 +189,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--<Association Name="DoctorPatientAppointmentAppointment">
+  <Association Name="DoctorPatientAppointmentAppointment">
     <End Role="DoctorPatientAppointment" Type="DataEntityModel.Store.DoctorPatientAppointments" Multiplicity="*" />
     <End Role="Appointment" Type="DataEntityModel.Store.Appointments" Multiplicity="1" />
     <ReferentialConstraint>
@@ -200,7 +200,7 @@
         <PropertyRef Name="AppointmentId" />
       </Dependent>
     </ReferentialConstraint>
-  </Association>-->
+  </Association>
   <Association Name="FK_LocationDoctor_Location">
     <End Role="Location" Type="DataEntityModel.Store.Locations" Multiplicity="1" />
     <End Role="LocationDoctor" Type="DataEntityModel.Store.LocationDoctor" Multiplicity="*" />
