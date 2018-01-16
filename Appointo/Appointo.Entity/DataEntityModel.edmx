@@ -89,7 +89,6 @@
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="Duration" Type="int" Nullable="false" />
     <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DoctorPatientAppointmentId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Locations">
     <Key>
@@ -335,7 +334,6 @@
           <Property Name="Duration" Type="Int32" Nullable="false" />
           <Property Name="Reason" Type="String" Nullable="false" />
           <NavigationProperty Name="Receptionists" Relationship="DataEntityModel.AppointmentReceptionist" FromRole="Appointment" ToRole="Receptionist" />
-          <Property Name="DoctorPatientAppointmentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DoctorPatientAppointments" Relationship="DataEntityModel.DoctorPatientAppointmentAppointment" FromRole="Appointment" ToRole="DoctorPatientAppointment" />
         </EntityType>
         <EntityType Name="Location">
@@ -498,7 +496,6 @@
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
           <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="DoctorPatientAppointmentId" ColumnName="DoctorPatientAppointmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
