@@ -14,7 +14,7 @@ node('master'){
 //				bat 'msbuild restore'
 				bat 'nuget restore'
 			}
-/*			dir('Appointo\\Appointo.Entity') {
+			dir('Appointo\\Appointo.Entity') {
 //				bat 'msbuild restore'
 //				bat 'nuget restore Appointo.Entity.csproj'
 				bat 'msbuild /t:clean,build Appointo.Entity.csproj'
@@ -25,21 +25,23 @@ node('master'){
 //				bat 'nuget restore Appointo.Library.csproj'
 				bat 'msbuild /t:clean,build Appointo.Library.csproj'
 			}
-*/
+
 			dir('Appointo\\Appointo.Client') {
 //				bat 'msbuild restore'
 //				bat 'nuget restore Appointo.Client.csproj'
 				bat 'msbuild /t:clean,build Appointo.Client.csproj'
 			}
-/*
+
 			dir('Appointo\\Appointo.Tests')	{
 //				bat 'msbuild restore'
 //				bat 'nuget restore Appointo.Tests.csproj'
 				bat 'msbuild /t:clean,build Appointo.Tests.csproj'
 			}
-*/
+
 		} catch(e) {
-			slackSend(message:'Appointo build failure')
+			def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+//			slackSend(message:'Appointo build failure')
+			slackSend(message: msg)
 			throw e
 		}
     }
