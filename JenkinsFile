@@ -76,7 +76,7 @@ node('master'){
     stage('package') {
 		try {
 			dir('Appointo') {
-				bat 'dotnet publish Appointo.Web\\Appointo.Web.csproj --output ../Package'
+				bat 'dotnet publish Appointo.Web\\Appointo.Web.csproj --framework --output ../Package'
 			}
 		} catch(e) {
 			slackSend(message:'Appointo package failure')
