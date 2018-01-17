@@ -26,12 +26,6 @@ node('master'){
 				bat 'msbuild /t:clean,build Appointo.Library.csproj'
 			}
 
-			dir('Appointo\\Appointo.Client') {
-//				bat 'msbuild restore'
-//				bat 'nuget restore Appointo.Client.csproj'
-				bat 'msbuild /t:clean,build Appointo.Client.csproj'
-			}
-
 			dir('Appointo\\Appointo.Web') {
 //				bat 'msbuild restore'
 //				bat 'nuget restore Appointo.Web.csproj'
