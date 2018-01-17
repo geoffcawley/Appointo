@@ -46,7 +46,7 @@ namespace Appointo.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Date,Duration,Reason,DoctorPatientAppointmentId")] Appointment appointment)
+        public ActionResult Create([Bind(Include = "Id,Date,Duration,Reason")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Appointo.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,Duration,Reason,DoctorPatientAppointmentId")] Appointment appointment)
+        public ActionResult Edit([Bind(Include = "Id,Date,Duration,Reason")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
