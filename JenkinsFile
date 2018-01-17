@@ -76,6 +76,7 @@ node('master'){
     stage('package') {
 		try {
 			dir('Appointo') {
+				bat 'dotnet restore Appointo.Web\\Appointo.Web.csproj'
 				bat 'dotnet publish Appointo.Web\\Appointo.Web.csproj --framework net471 --output ../Package'
 			}
 		} catch(e) {
