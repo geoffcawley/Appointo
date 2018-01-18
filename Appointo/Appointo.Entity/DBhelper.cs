@@ -9,20 +9,22 @@ namespace Appointo.Entity
   {
     private DataEntityModelContainer db = new DataEntityModelContainer();
 
-    public void ViewAppointments()
+    public Array ViewAppointments()
     {
-      db.Appointments.ToList();
+      Array Appoint = db.Appointments.ToArray();
+      return Appoint;
     }
 
-    public void AddAppointment (DateTime Aptdate, int Time, string Aptreason)
+    public void AddAppointment(DateTime Aptdate, int Time, string Aptreason)
     {
       db.Appointments.Add(new Appointment { Date = Aptdate, Duration = Time, Reason = Aptreason });
       db.SaveChanges();
     }
 
-    public void ViewDoctors()
+    public Array ViewDoctors()
     {
-      db.Doctors.ToList();
+      Array Doc = db.Doctors.ToArray();
+      return Doc;
     }
 
     public void AddDoctors(string FName, string LName, Specialty specialty)
@@ -31,9 +33,10 @@ namespace Appointo.Entity
       db.SaveChanges();
     }
 
-    public void ViewLocations()
+    public Array ViewLocations()
     {
-      db.Locations.ToList();
+      Array Room = db.Locations.ToArray();
+      return Room;
     }
 
     public void AddLocations(int num)
@@ -42,9 +45,10 @@ namespace Appointo.Entity
       db.SaveChanges();
     }
 
-    public void ViewAddress()
+    public Array ViewAddress()
     {
-      db.Addresses.ToList();
+      Array Address = db.Addresses.ToArray();
+      return Address;
     }
 
     public void AddAddress(string AddL1, string AddL2, string cit, string st, string zip)
@@ -53,9 +57,10 @@ namespace Appointo.Entity
       db.SaveChanges();
     }
 
-    public void ViewPatients()
+    public Array ViewPatients()
     {
-      db.Patients.ToList();
+      Array Patients = db.Patients.ToArray();
+      return Patients;
     }
 
     public void AddPatients(string FName, string LName, string DOB, int Add)
@@ -64,9 +69,10 @@ namespace Appointo.Entity
       db.SaveChanges();
     }
 
-    public void ViewReceptionist()
+    public Array ViewReceptionist()
     {
-      db.Receptionists.ToList();
+      Array Reception = db.Receptionists.ToArray();
+      return Reception;
     }
 
     public void AddReceptionist(int Log, string FName, string LName)
