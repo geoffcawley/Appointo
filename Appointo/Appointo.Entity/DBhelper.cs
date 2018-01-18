@@ -74,5 +74,11 @@ namespace Appointo.Entity
       db.Receptionists.Add(new Receptionist { LoginId = Log, FirstName = FName, LastName = LName });
       db.SaveChanges();
     }
+
+    public void AddDoctorPatientAppointment(int doc, int apt, int pat)
+    {
+      db.DoctorPatientAppointments.Add(new DoctorPatientAppointment { DoctorId = doc, AppointmentId = apt, PatientId = pat });
+      db.SaveChanges();
+    }
   }
 }
