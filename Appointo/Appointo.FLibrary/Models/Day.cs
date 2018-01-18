@@ -6,16 +6,10 @@ using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
-  public class Location
+  public class Day
   {
 		[Key]
 		public int Id { get; set; }
-		public int RoomNumber { get; set; }
-
-		public Location(Appointo.Entity.Location l)
-		{
-			Id = l.Id;
-			RoomNumber = l.RoomNumber;
-		}
+		DateTime PatientDateTime = DateTime.UtcNow;
   }
 }

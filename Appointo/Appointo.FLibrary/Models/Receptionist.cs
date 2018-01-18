@@ -6,16 +6,12 @@ using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
-  public class Location
+  public class Receptionist
   {
 		[Key]
 		public int Id { get; set; }
-		public int RoomNumber { get; set; }
-
-		public Location(Appointo.Entity.Location l)
-		{
-			Id = l.Id;
-			RoomNumber = l.RoomNumber;
-		}
+		public int LoginId { get; set; }
+    public string RecptFirstName { get; set; }
+    public string RecptLastName { get; set; }
   }
 }

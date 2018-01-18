@@ -6,16 +6,13 @@ using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
-  public class Location
+  public class Patient
   {
 		[Key]
 		public int Id { get; set; }
-		public int RoomNumber { get; set; }
-
-		public Location(Appointo.Entity.Location l)
-		{
-			Id = l.Id;
-			RoomNumber = l.RoomNumber;
-		}
+		public string PatFirstName { get; set; }
+    public string PatLastName { get; set; }
+    public string DateofBirth { get; set; }
+    //also takes address
   }
 }

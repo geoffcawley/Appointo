@@ -9,76 +9,76 @@ namespace Appointo.Entity
   {
     private DataEntityModelContainer db = new DataEntityModelContainer();
 
-    public void ViewAppointments()
-    {
-      db.Appointments.ToList();
-    }
+		public List<Appointment> ViewAppointments()
+		{
+			return db.Appointments.ToList();
+		}
 
-    public void AddAppointment (DateTime Aptdate, int Time, string Aptreason)
-    {
-      db.Appointments.Add(new Appointment { Date = Aptdate, Duration = Time, Reason = Aptreason });
-      db.SaveChanges();
-    }
+		public void AddAppointment(DateTime Aptdate, int Time, string Aptreason)
+		{
+			db.Appointments.Add(new Appointment { Date = Aptdate, Duration = Time, Reason = Aptreason });
+			db.SaveChanges();
+		}
 
-    public void ViewDoctors()
-    {
-      db.Doctors.ToList();
-    }
+		public List<Doctor> ViewDoctors()
+		{
+			return db.Doctors.ToList();
+		}
 
-    public void AddDoctors(string FName, string LName, Specialty specialty)
-    {
-      db.Doctors.Add(new Doctor { FirstName = FName, LastName = LName, Specialty = specialty });
-      db.SaveChanges();
-    }
+		public void AddDoctors(string FName, string LName, Specialty specialty)
+		{
+			db.Doctors.Add(new Doctor { FirstName = FName, LastName = LName, Specialty = specialty });
+			db.SaveChanges();
+		}
 
-    public void ViewLocations()
-    {
-      db.Locations.ToList();
-    }
+		public List<Location> ViewLocations()
+		{
+			return db.Locations.ToList();
+		}
 
-    public void AddLocations(int num)
-    {
-      db.Locations.Add(new Location { RoomNumber = num });
-      db.SaveChanges();
-    }
+		public void AddLocation(int num)
+		{
+			db.Locations.Add(new Location { RoomNumber = num });
+			db.SaveChanges();
+		}
 
-    public void ViewAddress()
-    {
-      db.Addresses.ToList();
-    }
+		public List<Address> ViewAddress()
+		{
+			return db.Addresses.ToList();
+		}
 
-    public void AddAddress(string AddL1, string AddL2, string cit, string st, string zip)
-    {
-      db.Addresses.Add(new Address { AddressLine1 = AddL1, AddressLine2 = AddL2, City = cit, State = st, ZipCode = zip });
-      db.SaveChanges();
-    }
+		public void AddAddress(string AddL1, string AddL2, string cit, string st, string zip)
+		{
+			db.Addresses.Add(new Address { AddressLine1 = AddL1, AddressLine2 = AddL2, City = cit, State = st, ZipCode = zip });
+			db.SaveChanges();
+		}
 
-    public void ViewPatients()
-    {
-      db.Patients.ToList();
-    }
+		public List<Patient> ViewPatients()
+		{
+			return db.Patients.ToList();
+		}
 
-    public void AddPatients(string FName, string LName, string DOB, int Add)
-    {
-      db.Patients.Add(new Patient { FirstName = FName, LastName = LName, DateOfBirth = DOB, AddressId = Add });
-      db.SaveChanges();
-    }
+		public void AddPatients(string FName, string LName, string DOB, int Add)
+		{
+			db.Patients.Add(new Patient { FirstName = FName, LastName = LName, DateOfBirth = DOB, AddressId = Add });
+			db.SaveChanges();
+		}
 
-    public void ViewReceptionist()
-    {
-      db.Receptionists.ToList();
-    }
+		public List<Receptionist> ViewReceptionist()
+		{
+			return db.Receptionists.ToList();
+		}
 
-    public void AddReceptionist(int Log, string FName, string LName)
-    {
-      db.Receptionists.Add(new Receptionist { LoginId = Log, FirstName = FName, LastName = LName });
-      db.SaveChanges();
-    }
+		public void AddReceptionist(int Log, string FName, string LName)
+		{
+			db.Receptionists.Add(new Receptionist { LoginId = Log, FirstName = FName, LastName = LName });
+			db.SaveChanges();
+		}
 
-    public void AddDoctorPatientAppointment(int doc, int apt, int pat)
-    {
-      db.DoctorPatientAppointments.Add(new DoctorPatientAppointment { DoctorId = doc, AppointmentId = apt, PatientId = pat });
-      db.SaveChanges();
-    }
-  }
+		public void AddDoctorPatientAppointment(int doc, int apt, int pat)
+		{
+			db.DoctorPatientAppointments.Add(new DoctorPatientAppointment { DoctorId = doc, AppointmentId = apt, PatientId = pat });
+			db.SaveChanges();
+		}
+	}
 }
