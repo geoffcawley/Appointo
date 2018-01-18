@@ -140,6 +140,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBhelper.cs" />
     <Compile Include="Doctor.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
