@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { RoomsModule } from "./rooms/rooms.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RoomsComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, RoomsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, RoomsComponent]
 })
 export class AppModule { }
