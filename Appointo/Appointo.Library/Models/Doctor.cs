@@ -8,8 +8,8 @@ namespace Appointo.Library.Models
 {
   public class Doctor
   {
-	[Key]
-	public int Id { get; set; }
+    [Key]
+    public int Id { get; set; }
 
     [Required]
     [StringLength(60, MinimumLength = 2)]
@@ -21,13 +21,18 @@ namespace Appointo.Library.Models
 
     public string Specialty { get; set; }
 
-    
+
     public Doctor(Appointo.Entity.Doctors d)
-        {
-            Id = d.DoctorId;
-            DocFirstName = d.FirstName;
-            DocLastName = d.LastName;
-            Specialty = d.Specialty.ToString();
-        }
+    {
+      Id = d.DoctorId;
+      DocFirstName = d.FirstName;
+      DocLastName = d.LastName;
+      Specialty = d.Specialty.ToString();
+    }
+
+    public Doctor()
+    {
+
+    }
   }
 }

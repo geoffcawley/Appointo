@@ -38,5 +38,10 @@ namespace Appointo.Library.Models
       State = a.State;
       ZipCode = a.ZipCode;
     }
+
+    public Address ()
+    {
+
+    }
 	}
 }

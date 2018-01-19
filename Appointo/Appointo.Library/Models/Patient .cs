@@ -38,5 +38,10 @@ namespace Appointo.Library.Models
       DateofBirth = p.DateOfBirth;
       AddressId = p.AddressId;
     }
+
+    public Patient()
+    {
+
+    }
   }
 }
