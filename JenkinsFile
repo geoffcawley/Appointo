@@ -26,10 +26,10 @@ node('master'){
 				bat 'msbuild /t:clean,build Appointo.Library.csproj'
 			}
 
-			dir('Appointo\\Appointo.Web') {
+			dir('Appointo\\Appointo.Service') {
 //				bat 'msbuild restore'
-//				bat 'nuget restore Appointo.Web.csproj'
-				bat 'msbuild /t:clean,build Appointo.Web.csproj'
+//				bat 'nuget restore Appointo.Service.csproj'
+				bat 'msbuild /t:clean,build Appointo.Service.csproj'
 			}
 
 			dir('Appointo\\Appointo.Tests')	{
@@ -47,7 +47,7 @@ node('master'){
 
 		} catch(e) {
 			def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
-//			slackSend(message:'Appointo build failure')
+			slackSend(message:'Appointo build failure')
 			slackSend(message: msg)
 			throw e
 		}
@@ -57,7 +57,7 @@ node('master'){
 		try {
 			dir('Appointo') {
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
-				bat 'msbuild /t:build Appointo.Web\\Appointo.Web.csproj'
+				bat 'msbuild /t:build Appointo.Service\\Appointo.Service.csproj'
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			}
 		} catch(e) {
@@ -83,8 +83,8 @@ node('master'){
     stage('package') {
 		try {
 			dir('Appointo') {
-				bat 'dotnet restore Appointo.Web\\Appointo.Web.csproj'
-				bat 'dotnet publish Appointo.Web\\Appointo.Web.csproj --framework net471 --output ../Package'
+				bat 'dotnet restore Appointo.Service\\Appointo.Service.csproj'
+				bat 'dotnet publish Appointo.Service\\Appointo.Service.csproj --output ../Package'
 			}
 		} catch(e) {
 			slackSend(message:'Appointo package failure')
@@ -94,7 +94,7 @@ node('master'){
     
     stage('deploy') {
 		try {
-			bat 'dotnet build ./Appointo/Appointo.Web/Appointo.Web.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
+			bat 'dotnet build ./Appointo/Appointo.Service/Appointo.Service.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
 //			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo\\Package\\" -dest:iisApp="Default Web Site/appointo",computername=ec2-18-216-243-172.us-east-2.compute.amazonaws.com,username=Administrator,password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r"  -enableRule:AppOffline'
 			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo\\Package\\" -dest:iisApp="Default Web Site/appointo",computername=https://ec2-18-216-243-172.us-east-2.compute.amazonaws.com:8172/msdeploy.axd,username="EC2AMAZ-TPHM1T3\\Administrator",password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r",authType=basic -allowuntrusted -enableRule:AppOffline'
 			slackSend(message:'Everything worked out ok')
