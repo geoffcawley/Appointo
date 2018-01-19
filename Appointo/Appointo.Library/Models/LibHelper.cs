@@ -24,7 +24,7 @@ namespace Appointo.Library.Models
     private static List<Patient> Patients;
     private static List<Address> Addresses;
     private static List<Receptionist> Receptionists;
-    
+
 
     //might be good to make this a singleton deal, but doesn't matter for now given time constraints
     public LibHelper()
@@ -64,22 +64,22 @@ namespace Appointo.Library.Models
       dbhelper.AddRoom(num);
     }
 
-        public List<Doctor> ViewDoctors()
-        {
-            List<DB.Doctors> dblist = dbhelper.ViewDoctors();
-            Doctors = new List<Doctor>();
-            foreach (var item in dblist)
-            {
-                Doctors.Add(new Doctor(item));
-            }
-            return Doctors;
-              
-        }
+    public List<Doctor> ViewDoctors()
+    {
+      List<DB.Doctors> dblist = dbhelper.ViewDoctors();
+      Doctors = new List<Doctor>();
+      foreach (var item in dblist)
+      {
+        Doctors.Add(new Doctor(item));
+      }
+      return Doctors;
 
-        public void AddDoctors(string FName, string LName, DB.Specialty specialty)
-        {
-            dbhelper.AddDoctors(FName, LName, specialty);
-        }
+    }
+
+    public void AddDoctors(string FName, string LName, DB.Specialty specialty)
+    {
+      dbhelper.AddDoctors(FName, LName, specialty);
+    }
 
 
 
@@ -117,7 +117,7 @@ namespace Appointo.Library.Models
 
     public void AddPatients(string FName, string LName, int DOB, int Add)
     {
-      dbhelper.AddPatients( FName, LName, DOB, Add );
+      dbhelper.AddPatients(FName, LName, DOB, Add);
     }
 
     public List<Receptionist> ViewReceptionist()
@@ -133,12 +133,12 @@ namespace Appointo.Library.Models
 
     public void AddReceptionist(int Log, string FName, string LName)
     {
-      dbhelper.AddReceptionist( Log, FName, LName );
+      dbhelper.AddReceptionist(Log, FName, LName);
     }
 
     public void AddDoctorPatientAppointment(int doc, int apt, int pat)
     {
-      dbhelper.AddDoctorPatientAppointment( doc, apt, pat);
+      dbhelper.AddDoctorPatientAppointment(doc, apt, pat);
     }
   }
 }
