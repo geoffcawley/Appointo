@@ -46,7 +46,7 @@ node('master'){
 			*/
 
 		} catch(e) {
-			slackSend(message:'Appointo build failure')\
+			slackSend(message:'Appointo build failure')
 			throw e
 		}
     }
