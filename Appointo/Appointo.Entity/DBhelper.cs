@@ -64,7 +64,7 @@ namespace Appointo.Entity
 			return db.Patients.ToList();
 		}
 
-		public void AddPatients(string FName, string LName, string DOB, int Add)
+		public void AddPatients(string FName, string LName, int DOB, int Add)
 		{
 			db.Patients.Add(new Patients { FirstName = FName, LastName = LName, DateOfBirth = DOB, AddressId = Add });
 			db.SaveChanges();
