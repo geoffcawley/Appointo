@@ -14,7 +14,7 @@ namespace Appointo.Entity
       return db.Appointments.ToList();
 		}
 
-		public void AddAppointment(DateTime Aptdate, int Time, string Aptreason)
+		public void AddAppointment(DateTime Aptdate, Duration Time, string Aptreason)
 		{
 			db.Appointments.Add(new Appointments { Date = Aptdate, Duration = Time, Reason = Aptreason });
 			db.SaveChanges();
