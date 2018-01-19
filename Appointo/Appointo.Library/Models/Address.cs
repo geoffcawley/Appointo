@@ -15,5 +15,15 @@ namespace Appointo.Library.Models
 		public string City { get; set; }
 		public string State { get; set; }
 		public int ZipCode = 0;
+
+    public Address (Appointo.Entity.Addresses a)
+    {
+      Id = a.AddressId;
+      AddressLine1 = a.AddressLine1;
+      AddressLine2 = a.AddressLine2;
+      City = a.City;
+      State = a.State;
+      ZipCode = a.ZipCode;
+    }
 	}
 }
