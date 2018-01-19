@@ -44,7 +44,7 @@ namespace Appointo.Library.Models
       dbhelper.AddAppointment(Aptdate, Time, Aptreason);
     }
 
-    public List<Rooms> ViewLocations()
+    public List<Rooms> ViewRooms()
     {
       List<DB.Rooms> dblist = dbhelper.ViewRooms();
       Rooms = new List<Rooms>();
