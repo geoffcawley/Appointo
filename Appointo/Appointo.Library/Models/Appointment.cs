@@ -21,5 +21,10 @@ namespace Appointo.Library.Models
       Duration = a.Duration;
       Reason = a.Reason;
     }
+
+    public Appointment()
+    {
+
+    }
   }
 }

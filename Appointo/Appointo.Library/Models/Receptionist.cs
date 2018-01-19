@@ -30,5 +30,10 @@ namespace Appointo.Library.Models
       RecptFirstName = r.FirstName;
       RecptLastName = r.LastName;
     }
+
+    public Receptionist()
+    {
+
+    }
   }
 }
