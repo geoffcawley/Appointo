@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Appointo.Library.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,12 +26,13 @@ namespace Appointo.Service.Controllers
 		}
 
 		[HttpPost]
+		[AllowAnonymous]
 		public IActionResult Post([FromBody]Rooms location)
 		{
 			try
 			{
-				//				_locations.Add(new DB.Location());
 				_db.AddRoom(location.RoomNumber);
+				_locations.Add(new Rooms(location.RoomNumber));
 				return Ok();
 			}
 			catch (Exception e)

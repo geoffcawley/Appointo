@@ -84,6 +84,16 @@ export class RoomsComponent implements OnInit {
 		});
 		target.appendChild(body);
 	}
+
+	// addRoom(e: Event, form: FormCon) {
+	// 	e.preventDefault();
+	// 	let roomNum = form.get("roomNumber").value
+	// }
+
+	onSubmit(form: any) {
+		console.log('submitted value:', form);
+		this.service.addRoom(form.roomNumber);
+	}
 }
 
 export class Room {
