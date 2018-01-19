@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointo.Web", "Appointo.Web\Appointo.Web.csproj", "{95549505-3222-4C62-949A-FF545740BE55}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointo.Service", "Appointo.Service\Appointo.Service.csproj", "{180763C8-6F03-485D-B83E-071D8C874CE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointo.Library", "Appointo.Library\Appointo.Library.csproj", "{CDDF50C6-AE19-4C4C-BA3B-634281BBA09A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointo.Entity", "Appointo.Entity\Appointo.Entity.csproj", "{9F53EA3B-F61C-4332-845F-737E05AEA988}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointo.Tests", "Appointo.Tests\Appointo.Tests.csproj", "{13E6CC49-1740-48C5-BCA7-7D01355AC9D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Appointo.Tests", "Appointo.Tests\Appointo.Tests.csproj", "{13E6CC49-1740-48C5-BCA7-7D01355AC9D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95549505-3222-4C62-949A-FF545740BE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95549505-3222-4C62-949A-FF545740BE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95549505-3222-4C62-949A-FF545740BE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95549505-3222-4C62-949A-FF545740BE55}.Release|Any CPU.Build.0 = Release|Any CPU
 		{180763C8-6F03-485D-B83E-071D8C874CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{180763C8-6F03-485D-B83E-071D8C874CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{180763C8-6F03-485D-B83E-071D8C874CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
