@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\Appointo.Entity\Appointo.Entity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-//using Appointo.Entity;
+using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
@@ -13,6 +13,6 @@ namespace Appointo.Library.Models
 		public string PatFirstName { get; set; }
     public string PatLastName { get; set; }
     public string DateofBirth { get; set; }
-    //also takes address
+    public int AddressId { get; set; } //take from addresses
   }
 }
