@@ -12,7 +12,16 @@ namespace Appointo.Library.Models
 		public int Id { get; set; }
 		public string PatFirstName { get; set; }
     public string PatLastName { get; set; }
-    public string DateofBirth { get; set; }
+    public int DateofBirth { get; set; }
     public int AddressId { get; set; } //take from addresses
+
+    public Patient (Appointo.Entity.Patients p)
+    {
+      Id = p.PatientId;
+      PatFirstName = p.FirstName;
+      PatLastName = p.LastName;
+      DateofBirth = p.DateOfBirth;
+      AddressId = p.AddressId;
+    }
   }
 }

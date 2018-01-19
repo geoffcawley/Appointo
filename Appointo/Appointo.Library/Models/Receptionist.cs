@@ -13,5 +13,13 @@ namespace Appointo.Library.Models
 		public int LoginId { get; set; }
     public string RecptFirstName { get; set; }
     public string RecptLastName { get; set; }
+
+    public Receptionist (Appointo.Entity.Receptionists r)
+    {
+      Id = r.ReceptionistId;
+      LoginId = r.LoginId;
+      RecptFirstName = r.FirstName;
+      RecptLastName = r.LastName;
+    }
   }
 }

@@ -23,6 +23,7 @@ namespace Appointo.Library.Models
     private static List<Rooms> Rooms;
     private static List<Patient> Patients;
     private static List<Address> Addresses;
+    private static List<Receptionist> Receptionists;
     
 
     //might be good to make this a singleton deal, but doesn't matter for now given time constraints
@@ -105,30 +106,39 @@ namespace Appointo.Library.Models
 
     public List<Patient> ViewPatients()
     {
-      return db.Patients.ToList();
+      List<DB.Patients> dblist = dbhelper.ViewPatients();
+      Patients = new List<Patient>();
+      foreach (var item in dblist)
+      {
+        Patients.Add(new Patient(item));
+      }
+      return Patients;
     }
 
-    public void AddPatients(string FName, string LName, string DOB, int Add)
+    public void AddPatients(string FName, string LName, int DOB, int Add)
     {
-      db.Patients.Add(new Patient { FirstName = FName, LastName = LName, DateOfBirth = DOB, AddressId = Add });
-      db.SaveChanges();
+      dbhelper.AddPatients( FName, LName, DOB, Add );
     }
 
     public List<Receptionist> ViewReceptionist()
     {
-      return db.Receptionists.ToList();
+      List<DB.Receptionists> dblist = dbhelper.ViewReceptionist();
+      Receptionists = new List<Receptionist>();
+      foreach (var item in dblist)
+      {
+        Receptionists.Add(new Receptionist(item));
+      }
+      return Receptionists;
     }
 
     public void AddReceptionist(int Log, string FName, string LName)
     {
-      db.Receptionists.Add(new Receptionist { LoginId = Log, FirstName = FName, LastName = LName });
-      db.SaveChanges();
+      dbhelper.AddReceptionist( Log, FName, LName );
     }
 
     public void AddDoctorPatientAppointment(int doc, int apt, int pat)
     {
-      db.DoctorPatientAppointments.Add(new DoctorPatientAppointment { DoctorId = doc, AppointmentId = apt, PatientId = pat });
-      db.SaveChanges();
+      dbhelper.AddDoctorPatientAppointment( doc, apt, pat);
     }
   }
 }
