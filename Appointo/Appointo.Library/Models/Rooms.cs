@@ -10,6 +10,8 @@ namespace Appointo.Library.Models
   {
     [Key]
     public int Id { get; set; }
+
+    [Required]
     public int RoomNumber { get; set; }
 
 	public Rooms()
