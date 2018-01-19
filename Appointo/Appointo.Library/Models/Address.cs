@@ -18,7 +18,7 @@ namespace Appointo.Library.Models
 		public string AddressLine2 { get; set; } //this is set to nullable in db
 
         [Required]
-        [StringLength(25, MinimumLength = 2)]
+        [StringLength(50, MinimumLength = 2)]
         public string City { get; set; }
 
         [Required]
