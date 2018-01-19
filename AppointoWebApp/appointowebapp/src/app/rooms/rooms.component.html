@@ -6,4 +6,15 @@
 	<button (click)="getRooms()">Get Rooms</button>
 	<button (click)="showResults()">Show Results</button>
 	<button (click)="fillTable()">Fill Table</button>
+	<br>
+	<form #f="ngForm"
+		(ngSubmit)="onSubmit(f.value)">
+		<label for="room-number">Add Room:</label>
+		<input type="text" 
+			id="room-number" 
+			name="roomNumber" 
+			value="" ngModel>
+		
+		<button type="submit">Add</button>
+	</form>
 </section>

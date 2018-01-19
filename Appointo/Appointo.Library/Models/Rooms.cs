@@ -14,10 +14,21 @@ namespace Appointo.Library.Models
     [Required]
     public int RoomNumber { get; set; }
 
+	public Rooms()
+		{
+			Id = -1;
+			RoomNumber = -1;
+		}
     public Rooms(Appointo.Entity.Rooms l)
     {
       Id = l.RoomId;
       RoomNumber = l.RoomNum;
     }
+
+	public Rooms(int roomnum)
+		{
+			Id = -1;
+			RoomNumber = roomnum;
+		}
   }
 }

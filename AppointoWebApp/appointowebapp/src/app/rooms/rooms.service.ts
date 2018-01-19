@@ -15,4 +15,11 @@ export class RoomsService {
 		return this.request.get('http://localhost/appointoservice/api/rooms').toPromise();
 	}
 
+	addRoom(roomNumber: number) {
+		const body = {RoomNumber: roomNumber};
+		this.request.post(
+			'http://localhost/appointoservice/api/rooms',
+			 body
+		).subscribe();
+	}
 }
