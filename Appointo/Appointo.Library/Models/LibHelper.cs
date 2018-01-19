@@ -41,7 +41,7 @@ namespace Appointo.Library.Models
     }
 
     //there needs to be some logic in here to avoid overlap
-    public void AddAppointment(DateTime Aptdate, int Time, string Aptreason)
+    public void AddAppointment(DateTime Aptdate, DB.Duration Time, string Aptreason)
     {
       dbhelper.AddAppointment(Aptdate, Time, Aptreason);
     }
@@ -74,9 +74,9 @@ namespace Appointo.Library.Models
               
         }
 
-        public void AddDoctors(string FName, string LName, string Specialty)
+        public void AddDoctors(string FName, string LName, DB.Specialty specialty)
         {
-            dbhelper.AddDoctors(FName, LName, Specialty);
+            dbhelper.AddDoctors(FName, LName, specialty);
         }
 
 
