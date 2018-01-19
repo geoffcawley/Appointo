@@ -16,8 +16,6 @@ namespace Appointo.Library.Models
 
 	public Rooms()
 		{
-			Id = -1;
-			RoomNumber = -1;
 		}
     public Rooms(Appointo.Entity.Rooms l)
     {

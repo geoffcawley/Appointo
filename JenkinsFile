@@ -46,9 +46,7 @@ node('master'){
 			*/
 
 		} catch(e) {
-			def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
-			slackSend(message:'Appointo build failure')
-			slackSend(message: msg)
+			slackSend(message:'Appointo build failure')\
 			throw e
 		}
     }
