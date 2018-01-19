@@ -13,17 +13,17 @@ namespace Appointo.Library.Models
 	public int Id { get; set; }
 
     [Required]
-    [StringLength(60, MinimumLength = 3)]
+    [StringLength(60, MinimumLength = 2)]
     public string PatFirstName { get; set; }
 
     [Required]
-    [StringLength(60, MinimumLength = 3)]
+    [StringLength(60, MinimumLength = 2)]
     public string PatLastName { get; set; }
 
     [Required]
     [Display(Name = "Date of Birth")]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
     //[MyBirthDateValidation(ErrorMessage = "You cannot be from the Future!")]
     public int DateofBirth { get; set; }
 

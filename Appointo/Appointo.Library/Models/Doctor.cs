@@ -12,11 +12,11 @@ namespace Appointo.Library.Models
 	public int Id { get; set; }
 
     [Required]
-    [StringLength(60, MinimumLength = 3)]
+    [StringLength(60, MinimumLength = 2)]
     public string DocFirstName { get; set; }
 
     [Required]
-    [StringLength(60, MinimumLength = 3)]
+    [StringLength(60, MinimumLength = 2)]
     public string DocLastName { get; set; }
 
     public string Specialty { get; set; }
