@@ -21,6 +21,8 @@ namespace Appointo.Library.Models
     private static List<Appointment> Appointments;
     private static List<Doctor> Doctors;
     private static List<Rooms> Rooms;
+    private static List<Patient> Patients;
+    
 
     //might be good to make this a singleton deal, but doesn't matter for now given time constraints
     public LibHelper()
@@ -60,58 +62,62 @@ namespace Appointo.Library.Models
       dbhelper.AddRoom(num);
     }
 
-    //The rest of this should look like the location thing above
+        public List<Doctor> ViewDoctors()
+        {
+            List<DB.Doctors> dblist = dbhelper.ViewDoctors();
+            Doctors = new List<Doctor>();
+            foreach (var item in dblist)
+            {
+                Doctors.Add(new Doctor(item));
+            }
+            return Doctors;
+              
+        }
 
-    //public List<Doctor> ViewDoctors()
-    //{
-    //	return db.Doctors.ToList();
-    //}
-
-    //public void AddDoctors(string FName, string LName, Specialty specialty)
-    //{
-    //	db.Doctors.Add(new Doctor { FirstName = FName, LastName = LName, Specialty = specialty });
-    //	db.SaveChanges();
-    //}
+        public void AddDoctors(string FName, string LName, string Specialty)
+        {
+            dbhelper.AddDoctors(FName, LName, Specialty);
+        }
 
 
 
-    //public List<Address> ViewAddress()
-    //{
-    //	return db.Addresses.ToList();
-    //}
+        //public List<Address> ViewAddress()
+        //{
+        //	return db.Addresses.ToList();
+        //}
 
-    //public void AddAddress(string AddL1, string AddL2, string cit, string st, string zip)
-    //{
-    //	db.Addresses.Add(new Address { AddressLine1 = AddL1, AddressLine2 = AddL2, City = cit, State = st, ZipCode = zip });
-    //	db.SaveChanges();
-    //}
+        //public void AddAddress(string AddL1, string AddL2, string cit, string st, string zip)
+        //{
+        //	db.Addresses.Add(new Address { AddressLine1 = AddL1, AddressLine2 = AddL2, City = cit, State = st, ZipCode = zip });
+        //	db.SaveChanges();
+        //}
 
-    //public List<Patient> ViewPatients()
-    //{
-    //	return db.Patients.ToList();
-    //}
+        //public List<Patient> ViewPatients()
+        //{
+        //	return db.Patients.ToList();
+        //}
 
-    //public void AddPatients(string FName, string LName, string DOB, int Add)
-    //{
-    //	db.Patients.Add(new Patient { FirstName = FName, LastName = LName, DateOfBirth = DOB, AddressId = Add });
-    //	db.SaveChanges();
-    //}
+        //public void AddPatients(string FName, string LName, string DOB, int Add)
+        //{
+        //	db.Patients.Add(new Patient { FirstName = FName, LastName = LName, DateOfBirth = DOB, AddressId = Add });
+        //	db.SaveChanges();
+        //}
 
-    //public List<Receptionist> ViewReceptionist()
-    //{
-    //	return db.Receptionists.ToList();
-    //}
+        //public List<Receptionist> ViewReceptionist()
+        //{
+        //	return db.Receptionists.ToList();
+        //}
 
-    //public void AddReceptionist(int Log, string FName, string LName)
-    //{
-    //	db.Receptionists.Add(new Receptionist { LoginId = Log, FirstName = FName, LastName = LName });
-    //	db.SaveChanges();
-    //}
+        //public void AddReceptionist(int Log, string FName, string LName)
+        //{
+        //	db.Receptionists.Add(new Receptionist { LoginId = Log, FirstName = FName, LastName = LName });
+        //	db.SaveChanges();
+        //}
 
-    //public void AddDoctorPatientAppointment(int doc, int apt, int pat)
-    //{
-    //	db.DoctorPatientAppointments.Add(new DoctorPatientAppointment { DoctorId = doc, AppointmentId = apt, PatientId = pat });
-    //	db.SaveChanges();
-    //}
-  }
+        //public void AddDoctorPatientAppointment(int doc, int apt, int pat)
+        //{
+        //	db.DoctorPatientAppointments.Add(new DoctorPatientAppointment { DoctorId = doc, AppointmentId = apt, PatientId = pat });
+        //	db.SaveChanges();
+        //}
+    }
 }
