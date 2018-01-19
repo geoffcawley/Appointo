@@ -1,15 +1,14 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using Xunit;
 
 namespace Appointo.Tests
 {
-	[TestClass]
-	public class UnitTest1
-	{
-		[TestMethod]
-		public void TestMethod1()
-		{
-			Assert.IsTrue(condition: 2 == 2);
-		}
-	}
+    public class UnitTest1
+    {
+        [Fact]
+        public void Test1()
+        {
+
+        }
+    }
 }
