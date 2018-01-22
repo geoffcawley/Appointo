@@ -9,6 +9,8 @@ import {
 import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomsModule } from "./rooms/rooms.module";
+import { AddressComponent } from "./address/address.component";
+import { AddressModule } from "./address/address.module";
 
 
 @NgModule({
@@ -16,9 +18,9 @@ import { RoomsModule } from "./rooms/rooms.module";
     AppComponent
   ],
   imports: [
-    BrowserModule, RoomsModule
+    BrowserModule, RoomsModule, AddressModule
   ],
   providers: [],
-  bootstrap: [AppComponent, RoomsComponent]
+  bootstrap: [AppComponent, RoomsComponent, AddressComponent]
 })
 export class AppModule { }

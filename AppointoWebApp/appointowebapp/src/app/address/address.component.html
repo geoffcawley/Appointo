@@ -1,0 +1,47 @@
+<section>
+	<h1>ADDRESSES</h1>
+	<div id="result-count"></div>
+	<table id="result-table"></table>
+
+	<button (click)="getAddresses()">Get Addresses</button>
+	<button (click)="showResults()">Show Results</button>
+	<button (click)="fillTable()">Fill Table</button>
+
+	<form #f="ngForm"
+		(ngSubmit)="onSubmit(f.value)">
+		<label>Add Address</label>
+		<label for="address-line-1">Address Line 1</label>
+		<input type="text" 
+			id="address-line-1" 
+			name="AddressLine1" 
+			value="" ngModel>
+		<br>
+		<label for="address-line-2">Address Line 2</label>
+		<input type="text" 
+			id="address-line-2" 
+			name="AddressLine2" 
+			value="" ngModel>
+		<br>
+		<label for="address-city">City</label>
+		<input type="text"
+			id="address-city"
+			name="AddressCity"
+			value="" ngModel>
+		<br>
+		<label for="address-state">State</label>
+		<input type="text"
+			id="address-state"
+			name="AddressState"
+			value="" ngModel>
+		<br>
+		<label for="address-zip">Zip Code</label>
+		<input type="text"
+			id="address-zip"
+			name="AddressZip"
+			value="" ngModel>
+		<br>
+
+		
+		<button type="submit">Add</button>
+	</form>
+</section>

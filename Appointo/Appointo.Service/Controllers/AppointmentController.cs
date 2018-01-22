@@ -30,7 +30,7 @@ namespace Appointo.Service.Controllers
 		{
 			try
 			{
-				//_db.AddAppointment()
+				_db.AddAppointment(appointment.StartTime, appointment.Duration, appointment.Reason);
 				//_locations.Add(new Rooms(location.RoomNumber));
 				return Ok();
 			}
