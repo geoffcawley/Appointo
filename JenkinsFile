@@ -41,7 +41,7 @@ node('master'){
 			}
 
 			
-			dir('Angular') {
+			dir('AppointoWebApp\\appointowebapp') {
 				bat 'npm install'
 				bat 'ng build'
 			}
