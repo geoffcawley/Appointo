@@ -12,7 +12,8 @@ export class AddressService {
 	 }
 
 	getAddresses() {
-		return this.request.get('http://localhost/appointoservice/api/address').toPromise();
+		// return this.request.get('http://localhost/appointoservice/api/address').toPromise();
+		return this.request.get('http://ec2-18-216-243-172.us-east-2.compute.amazonaws.com/appointoservice/api/address').toPromise();
 	}
 
 	addAddress(AddressLine1: string, AddressLine2: string, City: string, State: string, ZipCode: number) {
@@ -26,7 +27,8 @@ export class AddressService {
 		const headers = new HttpHeaders();
 		headers.set('Content-Type', 'application/json; charset=utf-8');
 		this.request.post(
-			'http://localhost/appointoservice/api/address',
+			// 'http://localhost/appointoservice/api/address',
+			'http://ec2-18-216-243-172.us-east-2.compute.amazonaws.com/appointoservice/api/address',
 			 body,
 			//  {headers: headers}
 		).subscribe(

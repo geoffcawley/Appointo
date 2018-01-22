@@ -12,7 +12,8 @@ export class PatientService {
 	 }
 
 	getPatients() {
-		return this.request.get('http://localhost/appointoservice/api/patient').toPromise();
+		// return this.request.get('http://localhost/appointoservice/api/patient').toPromise();
+		return this.request.get('http://ec2-18-216-243-172.us-east-2.compute.amazonaws.com/appointoservice/api/patient').toPromise();
 	}
 
 	// {
@@ -32,7 +33,8 @@ export class PatientService {
 		const headers = new HttpHeaders();
 		headers.set('Content-Type', 'application/json; charset=utf-8');
 		this.request.post(
-			'http://localhost/appointoservice/api/patient',
+			// 'http://localhost/appointoservice/api/patient',
+			'http://ec2-18-216-243-172.us-east-2.compute.amazonaws.com/appointoservice/api/patient',
 			 body,
 			//  {headers: headers}
 		).subscribe(
