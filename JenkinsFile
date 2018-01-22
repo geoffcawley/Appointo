@@ -11,8 +11,8 @@ node('master'){
     stage('build') {
 		try {
 			dir('Appointo') {
-//				bat 'msbuild restore'
-				bat 'nuget restore'
+				bat 'msbuild restore'
+//				bat 'nuget restore'
 			}
 			dir('Appointo\\Appointo.Entity') {
 //				bat 'msbuild restore'
@@ -28,7 +28,7 @@ node('master'){
 
 			dir('Appointo\\Appointo.Service') {
 //				bat 'msbuild restore'
-				bat 'nuget restore Appointo.Service.csproj'
+//				bat 'nuget restore Appointo.Service.csproj'
 				bat 'msbuild /t:clean,build Appointo.Service.csproj'
 			}
 
