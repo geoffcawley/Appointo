@@ -12,30 +12,31 @@ node('master'){
 		try {
 			dir('Appointo') {
 //				bat 'msbuild restore'
-				bat 'nuget restore'
+				// bat 'nuget restore'
+				bat 'dotnet restore'
 			}
 			dir('Appointo\\Appointo.Entity') {
 //				bat 'msbuild restore'
-				bat 'nuget restore Appointo.Entity.csproj'
-				bat 'msbuild /t:clean,build Appointo.Entity.csproj'
+				// bat 'nuget restore Appointo.Entity.csproj'
+				// bat 'msbuild /t:clean,build Appointo.Entity.csproj'
 			}
 
 			dir('Appointo\\Appointo.Library') {
 //				bat 'msbuild restore'
-				bat 'nuget restore Appointo.Library.csproj'
-				bat 'msbuild /t:clean,build Appointo.Library.csproj'
+				// bat 'nuget restore Appointo.Library.csproj'
+				// bat 'msbuild /t:clean,build Appointo.Library.csproj'
 			}
 
 			dir('Appointo\\Appointo.Service') {
 //				bat 'msbuild restore'
-				bat 'nuget restore Appointo.Service.csproj'
+				// bat 'nuget restore Appointo.Service.csproj'
 				bat 'msbuild /t:clean,build Appointo.Service.csproj'
 			}
 
 			dir('Appointo\\Appointo.Tests')	{
 //				bat 'msbuild restore'
-				bat 'nuget restore Appointo.Tests.csproj'
-				bat 'msbuild /t:clean,build Appointo.Tests.csproj'
+				// bat 'nuget restore Appointo.Tests.csproj'
+				// bat 'msbuild /t:clean,build Appointo.Tests.csproj'
 			}
 
 			
