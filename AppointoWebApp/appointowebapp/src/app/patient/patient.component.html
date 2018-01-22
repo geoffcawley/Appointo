@@ -1,0 +1,40 @@
+<section>
+	<h1>Patients</h1>
+	<div id="result-count"></div>
+	<table id="result-table"></table>
+
+	<button (click)="getPatients()">Get Patients</button>
+	<button (click)="showResults()">Show Results</button>
+	<button (click)="fillTable()">Fill Table</button>
+
+	<form #f="ngForm"
+		(ngSubmit)="onSubmit(f.value)">
+		<label>Add Patient</label><br>
+		<label for="pat-first-name">First Name</label>
+		<input type="text" 
+			id="pat-first-name" 
+			name="patFirstName" 
+			value="" ngModel>
+		<br>
+		<label for="pat-last-name">Last Name</label>
+		<input type="text" 
+			id="pat-last-name" 
+			name="patLastName" 
+			value="" ngModel>
+		<br>
+		<label for="date-of-birth">DOB</label>
+		<input type="text"
+			id="date-of-birth"
+			name="dateofBirth"
+			value="" ngModel>
+		<br>
+		<label for="address-id">Address</label>
+		<input type="text"
+			id="address-id"
+			name="addressId"
+			value="" ngModel>
+		<br>
+		
+		<button type="submit">Add</button>
+	</form>
+</section>
