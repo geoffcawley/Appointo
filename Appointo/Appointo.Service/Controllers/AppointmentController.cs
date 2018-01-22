@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ServiceProcess;
 using Appointo.Library.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,7 @@ namespace Appointo.Service.Controllers
 		{
 			try
 			{
-				//_db.AddAppointment()
+				_db.AddAppointment(appointment.StartTime, appointment.Duration, appointment.Reason);
 				//_locations.Add(new Rooms(location.RoomNumber));
 				return Ok();
 			}
