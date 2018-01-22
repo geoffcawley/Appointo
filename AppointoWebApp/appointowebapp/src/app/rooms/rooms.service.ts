@@ -12,7 +12,8 @@ export class RoomsService {
 	 }
 
 	getRooms() {
-		return this.request.get('http://localhost/appointoservice/api/rooms').toPromise();
+		// return this.request.get('http://localhost/appointoservice/api/rooms').toPromise();
+		return this.request.get('http://ec2-18-216-243-172.us-east-2.compute.amazonaws.com/appointoservice/api/rooms').toPromise();
 	}
 
 	addRoom(roomNumber: number) {
@@ -20,7 +21,8 @@ export class RoomsService {
 		let  myheaders = new Headers({ 'Content-Type': 'application/json' });
         // let options = new RequestOptions({ headers: myheaders, method: 'post' });
 		this.request.post(
-			'http://localhost/appointoservice/api/rooms',
+			// 'http://localhost/appointoservice/api/rooms',
+			'http://ec2-18-216-243-172.us-east-2.compute.amazonaws.com/appointoservice/api/rooms',
 			 body,
 		).subscribe();
 	}
