@@ -24,6 +24,7 @@ namespace Appointo.Library.Models
     private static List<Patient> Patients;
     private static List<Address> Addresses;
     private static List<Receptionist> Receptionists;
+    private static List<DoctorPatientAppointment> DoctorPatientAppointments;
 
 
     //might be good to make this a singleton deal, but doesn't matter for now given time constraints
@@ -122,14 +123,70 @@ namespace Appointo.Library.Models
 
     public void AddAddress(string AddL1, string AddL2, string cit, string st, int zip)
     {
-      dbhelper.AddAddress(AddL1, AddL2, cit, st, zip);
+      if (VerifyAddress(AddL1, AddL2, cit, st, zip) == true)
+      {
+        dbhelper.AddAddress(AddL1, AddL2, cit, st, zip);
+      }
+      else
+      {
+        Console.WriteLine("Address already exists.");
+      }
     }
 
     public void AddAddress(string AddL1, string cit, string st, int zip)
     {
-      dbhelper.AddAddress(AddL1, cit, st, zip);
+      if (VerifyAddress(AddL1, cit, st, zip) == true)
+      {
+        dbhelper.AddAddress(AddL1, cit, st, zip);
+      }
+      else
+      {
+        Console.WriteLine("Address already exists.");
+      }
     }
 
+    public bool VerifyAddress(string AddL1, string AddL2, string cit, string st, int zip)
+    {
+      List<DB.Addresses> dblist = dbhelper.ViewAddress();
+      Addresses = new List<Address>();
+      foreach (var item in dblist)
+      {
+        Addresses.Add(new Address(item));
+      }
+      for (int i = 0; i > Addresses.Count; i++)
+      {
+        if (Addresses[i].AddressLine1 == AddL1 &&
+          Addresses[i].AddressLine2 == AddL2 &&
+          Addresses[i].City == cit &&
+          Addresses[i].State == st &&
+          Addresses[i].ZipCode == zip)
+        {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    public bool VerifyAddress(string AddL1, string cit, string st, int zip)
+    {
+      List<DB.Addresses> dblist = dbhelper.ViewAddress();
+      Addresses = new List<Address>();
+      foreach (var item in dblist)
+      {
+        Addresses.Add(new Address(item));
+      }
+      for (int i = 0; i > Addresses.Count; i++)
+      {
+        if (Addresses[i].AddressLine1 == AddL1 &&
+          Addresses[i].City == cit &&
+          Addresses[i].State == st &&
+          Addresses[i].ZipCode == zip)
+        {
+          return false;
+        }
+      }
+      return true;
+    }
     public List<Patient> ViewPatients()
     {
       List<DB.Patients> dblist = dbhelper.ViewPatients();
@@ -162,9 +219,47 @@ namespace Appointo.Library.Models
       dbhelper.AddReceptionist(Log, FName, LName);
     }
 
+    public List<DoctorPatientAppointment> ViewDoctorPaitentAppointments()
+    {
+      List<DB.DoctorPatientAppointments> dblist = dbhelper.ViewDoctorPatientAppointments();
+      DoctorPatientAppointments = new List<DoctorPatientAppointment>();
+      foreach (var item in dblist)
+      {
+        DoctorPatientAppointments.Add(new DoctorPatientAppointment(item));
+      }
+      return DoctorPatientAppointments;
+    }
     public void AddDoctorPatientAppointment(int doc, int apt, int pat)
     {
-      dbhelper.AddDoctorPatientAppointment(doc, apt, pat);
+      if (VerifyDrPtApt(doc, apt, pat) == true)
+      {
+        dbhelper.AddDoctorPatientAppointment(doc, apt, pat);
+      }
+
+      else
+      {
+        Console.WriteLine("Appointment for that patient already exists");
+      }
+    }
+
+    public bool VerifyDrPtApt(int doc, int apt, int pat)
+    {
+      List<DB.DoctorPatientAppointments> dblist = dbhelper.ViewDoctorPatientAppointments();
+      DoctorPatientAppointments = new List<DoctorPatientAppointment>();
+      foreach (var item in dblist)
+      {
+        DoctorPatientAppointments.Add(new DoctorPatientAppointment(item));
+      }
+
+      for (int i = 0; i < DoctorPatientAppointments.Count; i++)
+      {
+        if (DoctorPatientAppointments[i].PatId == pat &&
+          DoctorPatientAppointments[i].AppointId == apt)
+        {
+          return false;
+        }
+      }
+      return true;
     }
   }
 }

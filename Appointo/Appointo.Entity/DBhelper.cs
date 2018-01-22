@@ -86,5 +86,10 @@ namespace Appointo.Entity
       db.DoctorPatientAppointments.Add(new DoctorPatientAppointments { DoctorId = doc, AppointmentId = apt, PatientId = pat });
       db.SaveChanges();
     }
+
+    public List<DoctorPatientAppointments> ViewDoctorPatientAppointments()
+    {
+      return db.DoctorPatientAppointments.ToList();
+    }
   }
 }

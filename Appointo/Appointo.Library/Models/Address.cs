@@ -6,30 +6,30 @@ using Appointo.Entity;
 
 namespace Appointo.Library.Models
 {
-	public class Address
-	{
-		[Key]
-		public int Id { get; set; }
+  public class Address
+  {
+    [Key]
+    public int Id { get; set; }
 
-        [Required]
-        [StringLength(50, MinimumLength = 10)]
-        public string AddressLine1 { get; set; }
+    [Required]
+    [StringLength(50, MinimumLength = 10)]
+    public string AddressLine1 { get; set; }
 
-		public string AddressLine2 { get; set; } //this is set to nullable in db
+    public string AddressLine2 { get; set; } //this is set to nullable in db
 
-        [Required]
-        [StringLength(50, MinimumLength = 2)]
-        public string City { get; set; }
+    [Required]
+    [StringLength(50, MinimumLength = 2)]
+    public string City { get; set; }
 
-        [Required]
-        [StringLength(2, MinimumLength = 2)]
-        public string State { get; set; }
+    [Required]
+    [StringLength(2, MinimumLength = 2)]
+    public string State { get; set; }
 
-        [Required]
-        [StringLength(10, MinimumLength = 5)]
-        public int ZipCode = 0;
+    [Required]
+    [StringLength(10, MinimumLength = 5)]
+    public int ZipCode = 0;
 
-    public Address (Appointo.Entity.Addresses a)
+    public Address(Appointo.Entity.Addresses a)
     {
       Id = a.AddressId;
       AddressLine1 = a.AddressLine1;
@@ -39,9 +39,9 @@ namespace Appointo.Library.Models
       ZipCode = a.ZipCode;
     }
 
-    public Address ()
+    public Address()
     {
 
     }
-	}
+  }
 }
