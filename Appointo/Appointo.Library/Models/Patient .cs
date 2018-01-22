@@ -23,7 +23,7 @@ namespace Appointo.Library.Models
     [Required]
     [Display(Name = "Date of Birth")]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
     //[MyBirthDateValidation(ErrorMessage = "You cannot be from the Future!")]
     public int DateofBirth { get; set; }
 
