@@ -42,7 +42,6 @@ namespace Appointo.Library.Models
       return Appointments;
     }
 
-    //there needs to be some logic in here to avoid overlap
     public void AddAppointment(DateTime Aptdate, DB.Duration Time, string Aptreason)
     {
       dbhelper.AddAppointment(Aptdate, Time, Aptreason);
@@ -61,7 +60,34 @@ namespace Appointo.Library.Models
 
     public void AddRoom(int num)
     {
-      dbhelper.AddRoom(num);
+      if (VerifyRoom(num) == true)
+      {
+        dbhelper.AddRoom(num);
+      }
+
+      else
+      {
+        Console.WriteLine("Room number exists");
+      }
+    }
+
+    public bool VerifyRoom(int num)
+    {
+      List<DB.Rooms> dblist = dbhelper.ViewRooms();
+      Rooms = new List<Rooms>();
+      foreach (var item in dblist)
+      {
+        Rooms.Add(new Rooms(item));
+      }
+
+      for (int i = 0; i < Rooms.Count; i++)
+      {
+        if (Rooms[i].RoomNumber == num)
+        {
+          return false;
+        }
+      }
+      return true;
     }
 
     public List<Doctor> ViewDoctors()
