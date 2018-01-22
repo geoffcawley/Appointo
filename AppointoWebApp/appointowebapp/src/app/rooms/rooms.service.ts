@@ -18,11 +18,10 @@ export class RoomsService {
 	addRoom(roomNumber: number) {
 		const body = {RoomNumber: roomNumber};
 		let  myheaders = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: myheaders, method: 'post' });
+        // let options = new RequestOptions({ headers: myheaders, method: 'post' });
 		this.request.post(
 			'http://localhost/appointoservice/api/rooms',
 			 body,
-			 new Headers({ 'Content-Type': 'application/json' })
 		).subscribe();
 	}
 }
