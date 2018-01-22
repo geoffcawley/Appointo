@@ -61,11 +61,11 @@ node('master'){
 			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			// }
 
-			dir('Appointo\\Appointo.Service') {
-				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
-				bat 'dotnet build Appointo.Service.csproj'
-				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
-			}
+			// dir('Appointo\\Appointo.Service') {
+			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
+			// 	bat 'dotnet build Appointo.Service.csproj'
+			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
+			// }
 		} catch(e) {
 			slackSend(message:'Appointo analysis failure')
 			throw e
