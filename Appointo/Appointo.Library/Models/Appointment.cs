@@ -10,7 +10,7 @@ namespace Appointo.Library.Models
   {
     [Key]
     public int Id { get; set; }
-    DateTime StartTime = DateTime.UtcNow;
+    DateTime StartTime = new DateTime();
     public Duration Duration { get; set; }
     public string Reason { get; set; }
 
