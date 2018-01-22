@@ -55,7 +55,7 @@ node('master'){
 
     stage('analyze') {
 		try {
-			dir('Appointo') {
+			// dir('Appointo') {
 			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
 			// 	bat 'dotnet build Appointo.Service\\Appointo.Service.csproj'
 			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'

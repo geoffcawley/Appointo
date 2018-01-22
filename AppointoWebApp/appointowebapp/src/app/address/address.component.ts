@@ -91,8 +91,8 @@ export class AddressComponent implements OnInit {
 
 	onSubmit(form: any) {
 		console.log('submitted value:', form);
-		this.service.addAddress(form.AddressLine1, form.AddressLine2, 
-			form.AddressCity, form.AddressState, form.AddressZip);
+		this.service.addAddress(form.addressLine1, form.addressLine2, 
+			form.city, form.state, form.zipCode);
 	}
 }
 
