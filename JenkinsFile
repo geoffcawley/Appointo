@@ -55,17 +55,17 @@ node('master'){
 
     stage('analyze') {
 		try {
-			dir('Appointo') {
+			// dir('Appointo') {
 			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
 			// 	bat 'dotnet build Appointo.Service\\Appointo.Service.csproj'
 			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			// }
 
-			dir('Appointo\\Appointo.Service') {
-				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
-				bat 'dotnet build Appointo.Service.csproj'
-				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
-			}
+			// dir('Appointo\\Appointo.Service') {
+			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
+			// 	bat 'dotnet build Appointo.Service.csproj'
+			// 	bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
+			// }
 		} catch(e) {
 			slackSend(message:'Appointo analysis failure')
 			throw e
@@ -92,6 +92,10 @@ node('master'){
 				bat 'dotnet restore Appointo.Service\\Appointo.Service.csproj'
 				bat 'dotnet publish Appointo.Service\\Appointo.Service.csproj --output ../Package'
 			}
+			dir('AppointoWebApp\\appointowebapp') {
+				bat 'ng build --base-href /AppointoWebApp/'
+				bat 'copy /y ..\\..\\web.config dist'
+			}
 		} catch(e) {
 			slackSend(message:'Appointo package failure')
 			throw e
@@ -102,7 +106,10 @@ node('master'){
 		try {
 			bat 'dotnet build ./Appointo/Appointo.Service/Appointo.Service.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
 //			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo\\Package\\" -dest:iisApp="Default Web Site/appointo",computername=ec2-18-216-243-172.us-east-2.compute.amazonaws.com,username=Administrator,password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r"  -enableRule:AppOffline'
-			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo\\Package\\" -dest:iisApp="Default Web Site/appointo",computername=https://ec2-18-216-243-172.us-east-2.compute.amazonaws.com:8172/msdeploy.axd,username="EC2AMAZ-TPHM1T3\\Administrator",password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r",authType=basic -allowuntrusted -enableRule:AppOffline'
+			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\Appointo\\Package\\" -dest:iisApp="Default Web Site/appointoservice",computername=https://ec2-18-216-243-172.us-east-2.compute.amazonaws.com:8172/msdeploy.axd,username="EC2AMAZ-TPHM1T3\\Administrator",password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r",authType=basic -allowuntrusted -enableRule:AppOffline'
+			// dir('AppointoWebApp\\appointowebapp') {
+				bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\appointo-pipe\\AppointoWebApp\\appointowebapp\\dist" -dest:iisApp="Default Web Site/appointowebapp",computername=https://ec2-18-216-243-172.us-east-2.compute.amazonaws.com:8172/msdeploy.axd,username="EC2AMAZ-TPHM1T3\\Administrator",password="ej@wV)&;.of8&NXxQrgWX@MI6DuD8h9r",authType=basic -allowuntrusted -enableRule:AppOffline'
+			// }
 			slackSend(message:'Everything worked out ok')
 		} catch(e) {
 			slackSend(message:'Appointo deploy failure')

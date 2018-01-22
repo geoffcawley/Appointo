@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { HttpModule } from '@angular/http/src/http_module';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class AddressService {
@@ -23,10 +23,24 @@ export class AddressService {
 			city: City,
 			state: State
 		};
+		const headers = new HttpHeaders();
+		headers.set('Content-Type', 'application/json; charset=utf-8');
 		this.request.post(
-			'http://localhost/appointoservice/api/rooms',
-			 body
-		).subscribe();
+			'http://localhost/appointoservice/api/address',
+			 body,
+			//  {headers: headers}
+		).subscribe(
+			// (data) => {
+			// 	console.log(data);
+			// },
+			// (err: HttpErrorResponse) => {
+			// 	if (err.error instanceof Error) {
+			// 		console.log('Client-side error occured.');
+			// 	} else {
+			// 		console.log('Server-side error occured.');
+			// 	}
+			// }
+		);
 	}
 
 }
