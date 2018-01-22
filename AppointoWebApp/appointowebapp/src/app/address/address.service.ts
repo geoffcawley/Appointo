@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { HttpModule } from '@angular/http/src/http_module';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AddressService {
@@ -23,9 +23,12 @@ export class AddressService {
 			city: City,
 			state: State
 		};
+		const headers = new HttpHeaders();
+		headers.set('Content-Type', 'application/json; charset=utf-8');
 		this.request.post(
 			'http://localhost/appointoservice/api/rooms',
-			 body
+			 body,
+			 {headers: headers}
 		).subscribe();
 	}
 
