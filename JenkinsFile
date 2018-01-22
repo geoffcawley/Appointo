@@ -57,7 +57,7 @@ node('master'){
 		try {
 			dir('Appointo') {
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:appointo'
-				bat 'msbuild /t:build Appointo.Service\\Appointo.Service.csproj'
+				bat 'dotnet build Appointo.Service\\Appointo.Service.csproj'
 				bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
 			}
 		} catch(e) {
@@ -71,7 +71,7 @@ node('master'){
 			dir('Appointo\\Appointo.Tests')
 			{
 				bat 'dotnet restore'
-				bat 'msbuild /t:build Appointo.Tests.csproj'
+				bat 'dotnet build Appointo.Tests.csproj'
 				bat 'dotnet test'
 			}
 		} catch(e) {
